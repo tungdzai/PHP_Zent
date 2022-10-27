@@ -67,7 +67,7 @@ $_SESSION["DataSanPham"] = $product_list;
             <tr>
                 <td><?= $product["id"] ?></td>
                 <td><?= $product["name"] ?></td>
-                <td><?= $product["price"] ?></td>
+                <td><?= number_format($product["price"])  ?></td>
                 <td><?= $product["quantily"] ?></td>
                 <td><img width="100px" height="100px" src="<?= $product["image"] ?>" alt=""></td>
                 <td>

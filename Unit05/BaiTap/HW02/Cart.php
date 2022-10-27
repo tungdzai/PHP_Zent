@@ -1,6 +1,15 @@
 <?php
 session_start();
-$productcart=$_SESSION["Cart"];
+$productcart = $_SESSION["Cart"];
+echo "<pre>";
+print_r($productcart);
+echo "</pre>";
+
+
+$sum = 0;
+foreach ($productcart as $key => $product) {
+    $sum +=$product["price"];
+}
 
 ?>
 <!DOCTYPE html>
@@ -34,12 +43,12 @@ $productcart=$_SESSION["Cart"];
         <?php
         foreach ($productcart as $key => $product) { ?>
             <tr>
-                <td><?= $product["id"]?></td>
-                <td><?= $product["name"]?></td>
-                <td><?= number_format($product["price"])?></td>
-                <td><?= $product["quantily"]?></td>
-                <td><img width="100px" height="100px" src="<?= $product["image"]?>" alt=""></td>
-                <td><?= number_format($product["price"]*$product["quantily"])?></td>
+                <td><?= $product["id"] ?></td>
+                <td><?= $product["name"] ?></td>
+                <td><?= number_format($product["price"]) ?></td>
+                <td><?= $product["quantily"] ?></td>
+                <td><img width="100px" height="100px" src="<?= $product["image"] ?>" alt=""></td>
+                <td><?= number_format($product["price"] * $product["quantily"]) ?></td>
                 <td>
                     <button style="background-color: red; border: none ;padding: 1px 25px;color: white;font-size: 20px;border-radius: 10px">
                         <a href="deleteProduct.php?id=<?= $key ?>" style="color: white">DELETE</a>
@@ -48,9 +57,9 @@ $productcart=$_SESSION["Cart"];
             </tr>
         <?php }
         ?>
-
         </tbody>
     </table>
+    <p>Tổng tiền: <?=  number_format($sum)." VNĐ" ?> </p>
 </div>
 
 </body>
