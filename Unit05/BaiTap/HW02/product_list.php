@@ -1,4 +1,5 @@
 <?php
+session_start();
 $product_list = array();
 $product_list[] = array(
     "id" => "IP1",
@@ -32,10 +33,7 @@ $product_list[] = array(
     "image" => "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/09/08/1111.png",
 
 );
-echo "<pre>";
-print_r($product_list);
-echo "</pre>";
-
+$_SESSION["DataSanPham"] = $product_list;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,7 +49,7 @@ echo "</pre>";
 
 <div class="container">
     <h2>Danh sách sản phẩm trong kho</h2>
-    <button style="background-color: aqua;border: none;padding: 3px 10px;border-radius: 5px;margin-bottom: 10px">Cart</button>
+    <a style="background-color: aqua;padding: 3px 10px;border-radius: 5px" href="Cart.php">Cart</a>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -67,15 +65,14 @@ echo "</pre>";
         <?php
         foreach ($product_list as $key => $product) { ?>
             <tr>
-                <td><?= $product["id"]?></td>
-                <td><?= $product["name"]?></td>
-                <td><?= $product["price"]?></td>
-                <td><?= $product["quantily"]?></td>
-                <td><img width="100px" height="100px" src="<?= $product["image"]?>" alt=""></td>
+                <td><?= $product["id"] ?></td>
+                <td><?= $product["name"] ?></td>
+                <td><?= $product["price"] ?></td>
+                <td><?= $product["quantily"] ?></td>
+                <td><img width="100px" height="100px" src="<?= $product["image"] ?>" alt=""></td>
                 <td>
                     <button style="background-color: #0066ff; border: none ;padding: 1px 25px;color: white;font-size: 20px;border-radius: 10px">
-                        <?php ?>
-                        Thêm
+                        <a href="addToCart.php?id=<?= $key ?>" style="color: white">Thêm</a>
                     </button>
                 </td>
             </tr>
