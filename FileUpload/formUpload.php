@@ -1,5 +1,8 @@
 <?php
 session_start();
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <!doctype html>
 <html lang="en">
@@ -49,7 +52,6 @@ session_start();
         <div class="alert alert-success" role="alert">
             Đường dẫn file upload <?= $_SESSION["uploadStatus"][1] ?>
         </div>
-
         <?php
         unset($_SESSION["uploadStatus"]);
     } ?>

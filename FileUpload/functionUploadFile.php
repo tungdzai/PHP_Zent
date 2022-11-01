@@ -1,14 +1,12 @@
 <?php
 session_start();
-//$path = "/path/to/file";
-//
-//echo "Path : $path";
-//
-//require "$path";
+echo "<pre>";
+print_r($_FILES);
+echo "</pre>";
 function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $override)
 {
-    $uploadStatus = true; // Đánh dấu xem lỗi ahy không.
-    $targetFile = $targetDir . "/" . basename($_FILES[$inputName]["name"]); // Tên đường dẫn ảnh được lưu trên sever.
+    $uploadStatus = true; // Đánh dấu xem lỗi hay không.
+    $targetFile = $targetDir . "/" . basename($_FILES["$inputName"]["name"]); // Tên đường dẫn ảnh được lưu trên sever.
     $errors = array(); // khai báo mảng lỗi khi UpLoadFile.
 
     $types = "";
@@ -18,6 +16,7 @@ function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $overrid
             $types .= $type . ",";
         }
     }
+
     $types = trim($types, ","); // cắt dấu , cuối chuỗi types.
 
     // check dữ liệu vào file.
@@ -33,11 +32,7 @@ function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $overrid
     }
     //Kiểm tra đuôi file
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-//    echo $imageFileType;
-//    echo "<pre>";
-//    print_r($_FILES);
-//    echo "</pre>";
-//    die("1");
+
     if (!in_array($imageFileType, $allowTypes)) {
         $errors[] = "Chỉ được uploadfile đúng định dạng " . $types;
         $uploadStatus = false;
@@ -49,29 +44,26 @@ function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $overrid
         $uploadStatus = false;
     }
 
-    //Ghi đè file.
+    //kiểm tra file có tồn tại chưa.
     if (file_exists($targetFile) && $override == false) {
         $errors[] = "Tên file đã tồn tại trên sever";
         $uploadStatus = false;
     }
     // upLoad file
-    if ($uploadStatus){
-//        echo "<pre>";
-//        print_r($_FILES[$inputName]["tmp_name"]);
-//        echo "</pre>";
-//        echo $targetFile;
-//        die(1);
-        if (move_uploaded_file($_FILES[$inputName]["tmp_name"],$targetFile)){
-            return array(true,$targetFile);
-        }else{
-            $errors[]="Có lỗi xảy ra khi upload file.Vui lòng kiểm tra lại !";
-            return array(false,$errors);
+    //move_uploaded_file di chuyển file đã tải đến vị trí mới( move_uploaded_file ( string $from , string $to ): bool)
+    if ($uploadStatus) {
+        if (move_uploaded_file($_FILES[$inputName]["tmp_name"], $targetFile)) {
+            return array(true, $targetFile);
+        } else {
+            $errors[] = "Có lỗi xảy ra khi upload file.Vui lòng kiểm tra lại !";
+            return array(false, $errors);
         }
-    }else{
-        return array(false,$errors);
+    } else {
+        return array(false, $errors);
     }
 }
-$uploadFile= checkUPLoadfile("avatar","image",array("jpg","png","gif"),1,true);
-$_SESSION["UploadFile"]=$uploadFile;
+
+$uploadFile = checkUPLoadfile("avatar", "image", array("jpg", "png", "gif"), 1, true);
+$_SESSION["uploadStatus"] = $uploadFile;
 //header("Location: formUpload.php");
 
