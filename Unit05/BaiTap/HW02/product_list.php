@@ -1,39 +1,5 @@
 <?php
-session_start();
-$product_list = array();
-$product_list[] = array(
-    "id" => "IP1",
-    "name" => "IPhone 14 pro max 1TB",
-    "price" => 50000000,
-    "quantily" => 100,
-    "image" => "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/09/08/1111.png",
-
-);
-$product_list[] = array(
-    "id" => "IP2",
-    "name" => "IPhone 14 pro max 1TB",
-    "price" => 50000000,
-    "quantily" => 60,
-    "image" => "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/09/08/1111.png",
-
-);
-$product_list[] = array(
-    "id" => "IP3",
-    "name" => "IPhone 14 pro max 1TB",
-    "price" => 50000000,
-    "quantily" => 10,
-    "image" => "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/09/08/1111.png",
-
-);
-$product_list[] = array(
-    "id" => "IP4",
-    "name" => "IPhone 14 pro max 1TB",
-    "price" => 50000000,
-    "quantily" => 70,
-    "image" => "https://cdn.hoanghamobile.com/i/productlist/dsp/Uploads/2022/09/08/1111.png",
-
-);
-$_SESSION["DataSanPham"] = $product_list;
+require_once('dataProduct.php')
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +33,7 @@ $_SESSION["DataSanPham"] = $product_list;
             <tr>
                 <td><?= $product["id"] ?></td>
                 <td><?= $product["name"] ?></td>
-                <td><?= number_format($product["price"])  ?></td>
+                <td><?= number_format($product["price"]) ?></td>
                 <td><?= $product["quantily"] ?></td>
                 <td><img width="100px" height="100px" src="<?= $product["image"] ?>" alt=""></td>
                 <td>

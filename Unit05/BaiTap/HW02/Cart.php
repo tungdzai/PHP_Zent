@@ -1,21 +1,16 @@
 <?php
 session_start();
 $productcart = $_SESSION["Cart"];
-echo "<pre>";
-print_r($productcart);
-echo "</pre>";
-
 
 $sum = 0;
 foreach ($productcart as $key => $product) {
-    $sum +=$product["price"];
+    $sum += $product["price"]*$product["quantily"];
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Product List</title>
+    <title>Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -27,7 +22,7 @@ foreach ($productcart as $key => $product) {
 <div class="container">
     <h2>Danh sách sản phẩm trong giỏ hàng</h2>
     <a href="product_list.php">Xem trang sản phầm</a>
-    <table class="table table-bordered">
+    <table class="table table-bordered" >
         <thead>
         <tr>
             <th>Mã sản phẩm</th>
@@ -46,7 +41,10 @@ foreach ($productcart as $key => $product) {
                 <td><?= $product["id"] ?></td>
                 <td><?= $product["name"] ?></td>
                 <td><?= number_format($product["price"]) ?></td>
-                <td><?= $product["quantily"] ?></td>
+                <td>
+                    <input type="number" name="quantily_cart" value="<?= $product["quantily"] ?>" min=1>
+                </td>
+
                 <td><img width="100px" height="100px" src="<?= $product["image"] ?>" alt=""></td>
                 <td><?= number_format($product["price"] * $product["quantily"]) ?></td>
                 <td>
@@ -59,8 +57,7 @@ foreach ($productcart as $key => $product) {
         ?>
         </tbody>
     </table>
-    <p>Tổng tiền: <?=  number_format($sum)." VNĐ" ?> </p>
+    <p>Tổng tiền: <?= number_format($sum) . " VNĐ" ?> </p>
 </div>
-
 </body>
 </html>
