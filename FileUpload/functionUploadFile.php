@@ -3,6 +3,9 @@ session_start();
 echo "<pre>";
 print_r($_FILES);
 echo "</pre>";
+define ('SITE_ROOT', realpath(dirname(__FILE__)));
+var_dump(SITE_ROOT);
+
 function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $override)
 {
     $uploadStatus = true; // Đánh dấu xem lỗi hay không.
