@@ -17,4 +17,8 @@ from unit08.hw01
 limit 2,5;
 # 5. Viết câu lệnh lấy ra các user có tên bắt đầu bằng chữ T
 select *
+<<<<<<< HEAD
 from unit08.hw01 where name like "%T%";
+=======
+from unit08.hw01 where name like "%T%";
+>>>>>>> 0af763bb980d65143c6803d58c6c37ffac20e8cd

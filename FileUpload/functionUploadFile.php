@@ -1,11 +1,6 @@
 <?php
 session_start();
-echo "<pre>";
-print_r($_FILES);
-echo "</pre>";
-define ('SITE_ROOT', realpath(dirname(__FILE__)));
-var_dump(SITE_ROOT);
-
+define ('SITE_ROOT', realpath(dirname("\xampp\htdocs\PHP_Zent\FileUpload\image")));
 function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $override)
 {
     $uploadStatus = true; // Đánh dấu xem lỗi hay không.
@@ -55,7 +50,7 @@ function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $overrid
     // upLoad file
     //move_uploaded_file di chuyển file đã tải đến vị trí mới( move_uploaded_file ( string $from , string $to ): bool)
     if ($uploadStatus) {
-        if (move_uploaded_file($_FILES[$inputName]["tmp_name"], $targetFile)) {
+        if (move_uploaded_file($_FILES[$inputName]["tmp_name"], SITE_ROOT.$targetFile)) {
             return array(true, $targetFile);
         } else {
             $errors[] = "Có lỗi xảy ra khi upload file.Vui lòng kiểm tra lại !";
@@ -68,5 +63,5 @@ function checkUPLoadfile($inputName, $targetDir, $allowTypes, $maxSize, $overrid
 
 $uploadFile = checkUPLoadfile("avatar", "image", array("jpg", "png", "gif"), 1, true);
 $_SESSION["uploadStatus"] = $uploadFile;
-//header("Location: formUpload.php");
+header("Location: formUpload.php");
 

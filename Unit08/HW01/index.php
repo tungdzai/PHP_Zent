@@ -28,4 +28,9 @@ insert into unit08.hw01 values (1,"iphone 14","tungnguyen0603202@gmail.com","tun
 (17,"iphone 14","tungnguyen0603202@gmail.com","tung","123","link ảnh",1,"2021-07-20 23:45:55","2021-11-18 10:46:09"),
 (18,"iphone 14","tungnguyen0603202@gmail.com","tung","123","link ảnh",1,"2021-07-20 23:45:55","2021-11-18 10:46:09"),
 (19,"iphone 14","tungnguyen0603202@gmail.com","tung","123","link ảnh",1,"2021-07-20 23:45:55","2021-11-18 10:46:09"),
+<<<<<<< HEAD
 (20,"iphone 14","tungnguyen0603202@gmail.com","tung","123","link ảnh",1,"2021-07-20 23:45:55","2021-11-18 10:46:09")
+=======
+(20,"iphone 14","tungnguyen0603202@gmail.com","tung","123","link ảnh",1,"2021-07-20 23:45:55","2021-11-18 10:46:09")
+
+>>>>>>> 0af763bb980d65143c6803d58c6c37ffac20e8cd
