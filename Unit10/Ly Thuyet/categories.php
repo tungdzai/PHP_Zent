@@ -6,4 +6,3 @@ $categories=array();
 while ($row=$results->fetch_assoc()){
     $categories[]=$row;
 }
-var_dump($categories);
