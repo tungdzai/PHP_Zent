@@ -10,9 +10,14 @@ if ($_FILES["thumbnail"]['name'] == '') {
     $_SESSION["uploadStatus"] = $uploadFile;
     $queryThumbnail = $uploadFile[1];
 }
-if ($data["name"] != null && $data["description"] != null) {
-    $sql = "insert into database_php.categories(name, parent_id, thumbnail, description) VALUES ('" . $data["name"] . "','" . $data["parent_id"] . "','" . $queryThumbnail . "','" . $data["description"] . "')";
+if ($data["name"] != null || $data["description"] != null) {
+    $sql = "insert into categories(name, parent_id, thumbnail, description) VALUES ('" . $data["name"] . "','" . $data["parent_id"] . "','" . $queryThumbnail . "','" . $data["description"] . "')";
     $status = $connn->query($sql);
+    if ($status) {
+        setcookie("msg", "Thanh công", time() + 5);
+    } else {
+        setcookie("error", "Lỗi", time() + 5);
+    }
 }
 header("Location:categories_form.php");
 

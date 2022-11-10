@@ -1,8 +1,8 @@
 <?php
 require_once("db_php30.php");
-$mySQL = "select * from db_php30.categories";
+$mySQL = "select * from posts";
 $results = $connn ->query($mySQL);
-$categories=array();
+$posts=array();
 while ($row=$results->fetch_assoc()){
-    $categories[]=$row;
+    $posts[]=$row;
 }

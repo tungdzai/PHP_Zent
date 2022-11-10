@@ -36,11 +36,10 @@ require_once("categorie_DB.php");
                 </div>
                 <?php
             } ?>
-
             <?php
             if (isset($_SESSION["uploadStatus"]) && $_SESSION["uploadStatus"][0] == true) { ?>
                 <div class="alert alert-success" role="alert">
-                   Thêm mới danh mục bài viết thành công.
+                    Thêm mới danh mục bài viết thành công.
                 </div>
                 <?php
                 unset($_SESSION["uploadStatus"]);
@@ -64,30 +63,42 @@ require_once("categorie_DB.php");
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($categories as $category) { ?>
-                            <tr>
-                                <th><?=$category["id"] ?></th>
-                                <td><?=$category["name"] ?></td>
+                        if (count($categories) !=0 ){ ?>
+                            <?php
+                            foreach ($categories as $index => $category) { ?>
+                                <tr>
+                                <td><?= $index +1 ?></td>
+                                <td><?= $category["name"] ?></td>
                                 <td class="avatar_categorie">
-                                    <img src="../HW01/<?=$category["thumbnail"]?>" alt="">
+                                    <img src="../HW01/<?= $category["thumbnail"] ?>" alt="">
                                 </td>
-                                <td><?=$category["description"] ?></td>
+                                <td><?= $category["description"] ?></td>
                                 <td>
                                     <a href="editCategorie.php?id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
-                                    <a href="delete_categorie.php?id=<?= $category["id"] ?>" class="btn btn-danger">Delete</a>
+                                    <a href="delete_categorie.php?id=<?= $category["id"] ?>"
+                                       class="btn btn-danger">Delete</a>
                                 </td>
-                            </tr><?php
+                                </tr><?php
+                            }
+                            ?>
+                        <?php
+                        }else{
+                            ?>
+                            <td>Chưa có sản phẩm nảo được thêm!</td>
+                        <?php
                         }
                         ?>
                         </tbody>
                     </table>
                 </form>
-                <form action="categorie_create_proress.php" class="frm_add" method="post" enctype="multipart/form-data" role="form">
+                <form action="categorie_create_proress.php" class="frm_add" method="post" enctype="multipart/form-data"
+                      role="form">
                     <h3>Thêm danh mục mới</h3>
                     <hr>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="name">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
+                               name="name">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Parent category</label>
@@ -95,8 +106,8 @@ require_once("categorie_DB.php");
                             <option value="">---</option>
                             <?php
                             foreach ($categories as $category) { ?>
-                                <option value="<?= $category["id"]?>"><?= $category["name"]?></option>
-                            <?php
+                                <option value="<?= $category["id"] ?>"><?= $category["name"] ?></option>
+                                <?php
                             }
                             ?>
                         </select>
@@ -107,7 +118,8 @@ require_once("categorie_DB.php");
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" name="description">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
+                               name="description">
                     </div>
                     <button type="submit" class="btn btn-primary">Create</button>
                 </form>
@@ -148,10 +160,12 @@ require_once("categorie_DB.php");
         margin-left: 10px;
 
     }
-    .avatar_categorie img{
+
+    .avatar_categorie img {
         width: 100%;
     }
-    .avatar_categorie{
+
+    .avatar_categorie {
         width: 130px;
         height: 100px;
     }

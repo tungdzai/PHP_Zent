@@ -22,7 +22,7 @@ require_once ("categorie_DB.php");
                         </div>
                     </section>
                     <section class="accordion-item">
-                        <a href="#" style="text-decoration: none">
+                        <a href="post.php" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-list-ol"></i>&ensp;Quản lý bài viết</div>
                         </a>
                     </section>
