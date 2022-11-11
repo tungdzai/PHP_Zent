@@ -11,7 +11,7 @@ require_once("search.php");
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Danh mục bài viết</title>
+    <title>Quản lý bài viết</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
@@ -67,15 +67,17 @@ require_once("search.php");
                             <td>Không có bài viết</td>
                             <?php
                         } else {
-                            foreach ($search_arrays as $post) { ?>
+                            foreach ($search_arrays as $index => $post) { ?>
                                 <tr>
-                                    <td><?= $post["id"] ?></td>
+                                    <td><?= $index + 1 ?></td>
                                     <td><?= $post["title"] ?></td>
                                     <td><?= $post["description"] ?></td>
-                                    <td><?= $post["thumbnail"] ?></td>
+                                    <td class="imgWrap">
+                                        <img src="./<?= $post["thumbnail"] ?>" alt="">
+                                    </td>
                                     <td><?= $post["content"] ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-success">Edit</a>
+                                        <a href="post_add.php?id=<?= $post["id"] ?>" class="btn btn-success">Edit</a>
                                         <a href="delete_post.php?id=<?= $post["id"] ?>"
                                            class="btn btn-danger">Delete</a>
                                     </td>
@@ -100,6 +102,16 @@ require_once("search.php");
 <style>
     .posts {
         margin-top: 60px;
+    }
+
+    .imgWrap {
+        width: 30px;
+    }
+
+    .imgWrap img {
+        width: 100%;
+        border-radius: 5px;
+
     }
 
     .posts .table_left {

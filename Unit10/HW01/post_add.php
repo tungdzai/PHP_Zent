@@ -1,5 +1,10 @@
 <?php
 session_start();
+require_once("db_php30.php");
+$key = isset($_GET["id"]) ? $_GET["id"] : 0;
+$sql = "select *from posts where id=".$key;
+$post_edit = $connn->query($sql)->fetch_assoc();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,33 +58,52 @@ session_start();
             <div class="container-fluid px-4 categoriesWrap">
                 <form action="post_add_proress.php" class="frm_add" method="post" enctype="multipart/form-data"
                       role="form">
-                    <h3>Thêm bài viết mới </h3>
+                    <h3>
+                        <?php
+                        $key = isset($_GET["id"]) ? $_GET["id"] : 0;
+                        if ($key == 0) {
+                            ?>
+                            Thêm mới bài viết
+                            <?php
+                        } else {
+                            ?>
+                            Chỉnh sửa bài viết
+                            <?php
+                        }
+                        ?>
+                    </h3>
                     <hr>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Title</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="title">
+                               name="title" value="<?= $key!=0 ?$post_edit["title"]: null ?>">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="description">
+                               name="description" value="<?= $key!=0 ?$post_edit["description"]: null ?>">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Thumbnail</label>
-                        <input type="file" class="form-control" name="thumbnail" >
+                        <input type="file" class="form-control" name="thumbnail">
                     </div>
                     <div class="form-group mb-3">
                         <label for="">Content</label>
-                        <textarea name="content" class="form-control" rows="4"></textarea>
+                        <textarea name="content" class="form-control" rows="4" type="text"><?= $key!=0 ?$post_edit["content"]: null ?></textarea>
                     </div>
                     <div class="form-group mb-3">
                         <label for="">Category</label>
                         <select class="form-control" name="category_id">
-                            <option value="">---</option>
+                            <option value="0">---</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" name="submit" value="<?= $key ?>">
+                        <?= $key == 0 ? "Create" : "Update" ?>
+                    </button>
                 </form>
             </div>
         </main>
@@ -95,6 +119,7 @@ session_start();
     .categoriesWrap {
         margin-top: 20px;
     }
+
     .categoriesWrap .frm_add {
         width: 60%;
         padding: 20px;
@@ -105,9 +130,6 @@ session_start();
         background-color: #eafcff;
 
     }
-
-
-
 
 
 </style>

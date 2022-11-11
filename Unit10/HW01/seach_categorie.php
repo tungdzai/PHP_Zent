@@ -1,7 +1,7 @@
 <?php
 require_once("db_php30.php");
 $key = isset($_GET["search"])?$_GET["search"]:null;
-if (isset($key)) {
+if (isset($key) ) {
     $sql = " select * from categories where title like '%".$key."%' ";
 } else {
     $sql = "select * from categories  ";

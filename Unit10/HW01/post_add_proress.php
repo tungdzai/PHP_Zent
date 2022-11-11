@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once("uploadFile.php");
-
 require_once("db_php30.php");
 $data = $_POST;
 if ($_FILES["thumbnail"]["name"] == "") {
@@ -17,7 +16,12 @@ if ($data["title"] == null || $data["description"] == null) {
     $_SESSION["error_post"] = $error_Post;
     header("Location:post_add.php");
 } else {
-    $sql = "insert into posts (title, description, thumbnail , content,category_id) VALUES ('" . $data["title"] . "','" . $data["description"] . "','" . $queryThumbnail . "','" . $data["content"] . "','" . $data["category_id"] . "')";
+    if ($data["submit"] == 0) {
+        $sql = "insert into posts (title, description, thumbnail , content,category_id) VALUES ('" . $data["title"] . "','" . $data["description"] . "','" . $queryThumbnail . "','" . $data["content"] . "','" . $data["category_id"] . "')";
+    } else {
+        $idupdate = $data["submit"];
+        $sql = "update posts set title='" . $data["title"] . "' , description='" . $data["description"] . "',thumbnail='" . $queryThumbnail . "',content='" . $data["content"] . "' where id=" . $idupdate;
+    }
     $status = $connn->query($sql);
     if ($status) {
         setcookie("success", "Thêm mới thành công", time() + 2);
