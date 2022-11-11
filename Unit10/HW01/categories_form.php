@@ -114,7 +114,7 @@ require_once("categorie_DB.php");
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Avatar</label>
-                        <input type="file" class="form-control" name="thumbnail">
+                        <input type="file" class="form-control" name="thumbnail" >
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>

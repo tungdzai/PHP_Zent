@@ -16,7 +16,7 @@ require_once ("categorie_DB.php");
                         <div class="accordion-item-content">
                             <?php
                             foreach ($categories as $category) { ?>
-                                <p style="padding-left: 60px ;padding-top:10px;cursor: pointer"><?=  $category["name"]?></p>
+                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer"><?=  $category["name"]?></p>
                             <?php }
                             ?>
                         </div>

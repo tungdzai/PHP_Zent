@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("post_DB.php");
+require_once ("search.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +24,33 @@ require_once("post_DB.php");
 <div id="layoutSidenav">
     <?php require_once("sidebar.php"); ?>
     <div id="layoutSidenav_content">
+        <div class="success">
+            <?php
+            if (isset($_COOKIE["success"])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $_COOKIE["success"] ?>
+                </div>
+                <?php
+            } ?>
+            <?php
+            if (isset($_COOKIE["error"])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $_COOKIE["error"] ?>
+                </div>
+                <?php
+            } ?>
+        </div>
         <!-- main -->
         <main>
+            <?php
+            require_once ("search.php");
+            echo "<pre>";
+            print_r($search_arrays);
+            echo "</pre>";
+            ?>
             <div class="container-fluid px-4 posts">
+                <a href="post_add.php" class="btn btn-success" style="margin-bottom: 10px">Thêm mới <i
+                            class="far fa-map-pin"></i> </a>
                 <form class="table_left">
                     <h3>Quản lý bài viết</h3>
                     <hr>
@@ -43,19 +68,22 @@ require_once("post_DB.php");
                         <tbody>
                         <?php
                         foreach ($posts as $post) { ?>
-                            <td><?=$post["id"] ?></td>
-                            <td><?=$post["title"] ?></td>
-                            <td><?=$post["description"] ?></td>
-                            <td><?=$post["thumbnail"] ?></td>
-                            <td><?=$post["content"] ?></td>
-                            <td>
-                                <a href="#" class="btn btn-success">Edit</a>
-                                <a href="#"
-                                   class="btn btn-danger">Delete</a>
-                            </td>
+                            <tr>
+                                <td><?= $post["id"] ?></td>
+                                <td><?= $post["title"] ?></td>
+                                <td><?= $post["description"] ?></td>
+                                <td><?= $post["thumbnail"] ?></td>
+                                <td><?= $post["content"] ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Edit</a>
+                                    <a href="delete_post.php?id=<?= $post["id"] ?>"
+                                       class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
                             <?php
                         }
                         ?>
+
                         </tbody>
                     </table>
                 </form>
