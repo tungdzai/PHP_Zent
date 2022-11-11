@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("categorie_DB.php");
+require_once ("seach_categorie.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">

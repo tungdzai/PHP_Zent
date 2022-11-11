@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("post_DB.php");
-require_once ("search.php");
+require_once("search.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,12 +42,6 @@ require_once ("search.php");
         </div>
         <!-- main -->
         <main>
-            <?php
-            require_once ("search.php");
-            echo "<pre>";
-            print_r($search_arrays);
-            echo "</pre>";
-            ?>
             <div class="container-fluid px-4 posts">
                 <a href="post_add.php" class="btn btn-success" style="margin-bottom: 10px">Thêm mới <i
                             class="far fa-map-pin"></i> </a>
@@ -66,21 +60,28 @@ require_once ("search.php");
                         </tr>
                         </thead>
                         <tbody>
+
                         <?php
-                        foreach ($posts as $post) { ?>
-                            <tr>
-                                <td><?= $post["id"] ?></td>
-                                <td><?= $post["title"] ?></td>
-                                <td><?= $post["description"] ?></td>
-                                <td><?= $post["thumbnail"] ?></td>
-                                <td><?= $post["content"] ?></td>
-                                <td>
-                                    <a href="#" class="btn btn-success">Edit</a>
-                                    <a href="delete_post.php?id=<?= $post["id"] ?>"
-                                       class="btn btn-danger">Delete</a>
-                                </td>
-                            </tr>
+                        if (count($search_arrays) == 0) {
+                            ?>
+                            <td>Không có bài viết</td>
                             <?php
+                        } else {
+                            foreach ($search_arrays as $post) { ?>
+                                <tr>
+                                    <td><?= $post["id"] ?></td>
+                                    <td><?= $post["title"] ?></td>
+                                    <td><?= $post["description"] ?></td>
+                                    <td><?= $post["thumbnail"] ?></td>
+                                    <td><?= $post["content"] ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-success">Edit</a>
+                                        <a href="delete_post.php?id=<?= $post["id"] ?>"
+                                           class="btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
                         }
                         ?>
 
