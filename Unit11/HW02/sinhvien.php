@@ -1,5 +1,5 @@
 <?php
-class sinhvien{
+class  sinhvien{
     private $hoVaTen, $gioitinh,$ngaysinh, $quequan;
 
     public function __construct($hoVaTen, $gioitinh,$ngaysinh, $quequan)
