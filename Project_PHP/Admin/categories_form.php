@@ -1,11 +1,7 @@
 <?php
 session_start();
-require_once("db_php30.php");
 require_once("categorie_DB.php");
-$id = isset($_GET["id"])?$_GET["id"]: 0;
-$sql = "select * from categories where id=$id";
-$categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
-
+require_once ("seach_categorie.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,24 +37,14 @@ $categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
                 </div>
                 <?php
             } ?>
-
-        </div>
-        <div class="success">
             <?php
-            if (isset($_COOKIE["success"])) { ?>
+            if (isset($_SESSION["uploadStatus"]) && $_SESSION["uploadStatus"][0] == true) { ?>
                 <div class="alert alert-success" role="alert">
-                    <?= $_COOKIE["success"] ?>
+                    Thêm mới danh mục bài viết thành công.
                 </div>
                 <?php
+                unset($_SESSION["uploadStatus"]);
             } ?>
-            <?php
-            if (isset($_COOKIE["error"])) { ?>
-                <div class="alert alert-success" role="alert">
-                    <?= $_COOKIE["error"] ?>
-                </div>
-                <?php
-            } ?>
-
         </div>
         <!-- main -->
         <main>
@@ -78,30 +64,29 @@ $categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
                         </thead>
                         <tbody>
                         <?php
-                        if (count($categories) != 0) { ?>
+                        if (count($categories) !=0 ){ ?>
                             <?php
                             foreach ($categories as $index => $category) { ?>
                                 <tr>
-                                <td><?= $index + 1 ?></td>
+                                <td><?= $index +1 ?></td>
                                 <td><?= $category["name"] ?></td>
                                 <td class="avatar_categorie">
                                     <img src="../HW01/<?= $category["thumbnail"] ?>" alt="">
                                 </td>
                                 <td><?= $category["description"] ?></td>
                                 <td>
-                                    <a href="categories_form.php?id=<?= $category["id"] ?>"
-                                       class="btn btn-success">Edit</a>
+                                    <a href="editCategorie.php?id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
                                     <a href="delete_categorie.php?id=<?= $category["id"] ?>"
                                        class="btn btn-danger">Delete</a>
                                 </td>
                                 </tr><?php
                             }
                             ?>
-                            <?php
-                        } else {
+                        <?php
+                        }else{
                             ?>
                             <td>Chưa có sản phẩm nảo được thêm!</td>
-                            <?php
+                        <?php
                         }
                         ?>
                         </tbody>
@@ -109,17 +94,12 @@ $categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
                 </form>
                 <form action="categorie_create_proress.php" class="frm_add" method="post" enctype="multipart/form-data"
                       role="form">
-                    <h3>
-                        <?=
-                        isset($_GET["id"]) ? "Chỉnh sửa danh mục " : "Thêm danh mục mới";
-                        ?>
-                    </h3>
+                    <h3>Thêm danh mục mới</h3>
                     <hr>
-
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="name" value="<?=isset($_GET["id"])? $categorie_edit["name"]:null ?>">
+                               name="name">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Parent category</label>
@@ -135,14 +115,14 @@ $categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Avatar</label>
-                        <input type="file" class="form-control" name="thumbnail">
+                        <input type="file" class="form-control" name="thumbnail" >
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="description" value="<?=isset($_GET["id"])? $categorie_edit["description"]:null ?>" >
+                               name="description">
                     </div>
-                    <button type="submit" class="btn btn-primary" name="submit" value="<?=isset($_GET["id"])? $_GET["id"]:null ?>"><?=isset($_GET["id"])? "Cập nhật":"Create" ?></button>
+                    <button type="submit" class="btn btn-primary">Create</button>
                 </form>
             </div>
         </main>

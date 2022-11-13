@@ -2,7 +2,7 @@
 session_start();
 require_once("post_DB.php");
 require_once("search.php");
-require_once("pagination_proress.php")
+require_once ("pagination_proress.php")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,32 +62,14 @@ require_once("pagination_proress.php")
                         </thead>
                         <tbody>
                         <?php
-                        if (count($search_arrays) == 0 ){?>
-                            <td>Bài viết không tồn tại</td>
-                            <?php
-                        }
                         ?>
                         <?php
-                        if (isset($_GET["search"])) {
-                            foreach ($search_arrays as $index => $post) { ?>
-                                <tr>
-                                    <td><?= $index + 1 ?></td>
-                                    <td><?= $post["title"] ?></td>
-                                    <td><?= $post["description"] ?></td>
-                                    <td class="imgWrap">
-                                        <img src="./<?= $post["thumbnail"] ?>" alt="">
-                                    </td>
-                                    <td><?= $post["content"] ?></td>
-                                    <td>
-                                        <a href="post_add.php?id=<?= $post["id"] ?>" class="btn btn-success">Edit</a>
-                                        <a href="delete_post.php?id=<?= $post["id"] ?>"
-                                           class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
+                        if (count($search_arrays) == 0) {
+                            ?>
+                            <td>Không có bài viết</td>
+                            <?php
                         } else {
-                            foreach ($post_page as $index => $post) { ?>
+                            foreach ( $post_page as $index => $post) { ?>
                                 <tr>
                                     <td><?= $index + 1 ?></td>
                                     <td><?= $post["title"] ?></td>
@@ -106,10 +88,11 @@ require_once("pagination_proress.php")
                             }
                         }
                         ?>
+
                         </tbody>
                     </table>
                 </form>
-                <?php require_once("pagination.php") ?>
+                <?php require_once ("pagination.php")?>
         </main>
         <?php require_once("footer.php"); ?>
     </div>
