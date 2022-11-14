@@ -16,7 +16,7 @@
 <div id='stars2'></div>
 <div id='stars3'></div>
 <div id='title'>
-    <form action="login_proress.php" method="post">
+    <form action="register_proress.php" method="post">
         <h1>Register</h1>
         <div class="mb-3">
             <input type="text" class="form-control"
