@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style_login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 <body>
 <div id='stars'></div>
@@ -17,23 +17,25 @@
 <div id='stars3'></div>
 <div id='title'>
     <form action="login_proress.php" method="post">
-        <h1>Login</h1>
+        <h1>Register</h1>
+        <div class="mb-3">
+            <input type="text" class="form-control"
+                   placeholder="Name" name="name">
+        </div>
         <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Email" name="email">
-        </div>
-        <div class="error">
-
         </div>
         <div class="mb-3">
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
         <div class="mb-3">
-            <button type="submit" class="btn btn-info" style="color: #FFFFFF ; width: 100%">Đăng nhập</button>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm" name="Confirm">
         </div>
-        <a href="register.php">Đăng kí</a>
-        <a href="#">Quên mật khẩu ?</a>
-
+        <div class="mb-3">
+            <button type="submit" class="btn btn-info" style="color: #FFFFFF ; width: 100%">Đăng kí</button>
+        </div>
+        <a href="index.php">Đăng nhập</a>
     </form>
 </div>
 </body>
