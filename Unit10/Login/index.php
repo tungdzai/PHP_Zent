@@ -16,16 +16,22 @@
 <div id='stars2'></div>
 <div id='stars3'></div>
 <div id='title'>
-    <form>
-        <h2>Login</h2>
+    <form action="login_proress.php" method="post">
+        <h1>Login</h1>
         <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Email">
+                   placeholder="Email" name="email">
+        </div>
+        <div class="error">
+
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
         </div>
-        <button type="submit" class="btn btn-info" style="color: #FFFFFF">Đăng nhập</button>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-info" style="color: #FFFFFF ; width: 100%">Đăng nhập</button>
+        </div>
+        <a href="#">Quên mật khẩu ?</a>
     </form>
 </div>
 </body>
@@ -40,11 +46,23 @@
         padding: 30px;
         background-color: #FFFFFF;
         color: black;
-        width: 20%;
+        width: 30%;
         margin: 0 auto;
         border-radius: 10px;
     }
-    form h2{
-        margin-bottom: 100px;
+
+    form h1 {
+        margin-bottom: 50px;
+    }
+
+    #title {
+        top: 30%;
+    }
+
+    a {
+        font-size: 15px;
+        letter-spacing: normal;
+        text-decoration: none;
+        color: #0dcaf0;
     }
 </style>
