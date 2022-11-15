@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $statusRegiter = isset($_SESSION["status_register"][0]) ? $_SESSION["status_register"][0] : null;
 ?>
 <!doctype html>

@@ -11,17 +11,17 @@ if ($_FILES["thumbnail"]['name'] == '') {
     $queryThumbnail = $uploadFile[1];
 }
 if ($data["name"] != null || $data["description"] != null) {
-    if (isset($data["submit"])) {
+    if ($data["submit"] == null) {
+        $sql = "insert into categories(name, parent_id, thumbnail, description) VALUES ('" . $data["name"] . "','" . $data["parent_id"] . "','" . $queryThumbnail . "','" . $data["description"] . "')";
+    } else {
         $id = $data["submit"];
         $sql = "update categories set name ='" . $data["name"] . "',parent_id ='" . $data["parent_id"] . "',thumbnail='" . $queryThumbnail . "',description='" . $data["description"] . "' where id=" . $id;
-    } else {
-        $sql = "insert into categories(name, parent_id, thumbnail, description) VALUES ('" . $data["name"] . "','" . $data["parent_id"] . "','" . $queryThumbnail . "','" . $data["description"] . "')";
     }
-    $status = $connn->query($sql);
-    if ($status) {
-        setcookie("success",isset($data["submit"])?"Cập nhật thành công":"Thêm  mới thành công", time() + 1);
+    $status_categorie = $connn->query($sql);
+    if ($status_categorie) {
+        setcookie("success",$data["submit"] == null ?"Thêm  mới thành công":"Cập nhật thành công", time() + 1);
     } else {
-        setcookie("error", isset($data["submit"])?"Lỗi cập nhật":"Lỗi thêm mới", time() + 1);
+        setcookie("error", $data["submit"] == null ?"Lỗi thêm mới":"Lỗi cập nhật", time() + 1);
     }
 }
 header("Location:categories_form.php");
