@@ -1,3 +1,7 @@
+<?php
+session_start();
+$statusRegiter = isset($_SESSION["status_register"][0]) ? $_SESSION["status_register"][0] : null;
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,18 +23,65 @@
     <form action="register_proress.php" method="post">
         <h1>Register</h1>
         <div class="mb-3">
-            <input type="text" class="form-control"
-                   placeholder="Name" name="name">
+            <input type="text" class="form-control" placeholder="Name" name="name">
+            <?php
+            if ($statusRegiter == false && isset($_SESSION["status_register"][1]["notname"])) {
+                ?>
+                <p>
+                    <?= $_SESSION["status_register"][1]["notname"];
+                    unset($_SESSION["status_register"][1]["notname"]) ?>
+                </p>
+                <?php
+            } elseif ($statusRegiter == false && isset($_SESSION["status_register"][1]["name"])) {
+                ?>
+                <p>
+                    <?= $_SESSION["status_register"][1]["name"];
+                    unset($_SESSION["status_register"][1]["name"]) ?>
+                </p>
+
+                <?php
+            }
+            ?>
         </div>
         <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Email" name="email">
+            <?php
+            if ($statusRegiter == false && isset($_SESSION["status_register"][1]["email"])) {
+                ?>
+                <p>
+                    <?= $_SESSION["status_register"][1]["email"];
+                    unset($_SESSION["status_register"][1]["email"]) ?>
+                </p>
+                <?php
+            }
+            ?>
         </div>
         <div class="mb-3">
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+            <?php
+            if ($statusRegiter == false && isset($_SESSION["status_register"][1]["password"])) {
+                ?>
+                <p>
+                    <?= $_SESSION["status_register"][1]["password"];
+                    unset($_SESSION["status_register"][1]["password"]) ?>
+                </p>
+                <?php
+            }
+            ?>
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm" name="Confirm">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm" name="confirm">
+            <?php
+            if ($statusRegiter == false && isset($_SESSION["status_register"][1]["confirm"])) {
+                ?>
+                <p>
+                    <?= $_SESSION["status_register"][1]["confirm"];
+                    unset($_SESSION["status_register"][1]["confirm"]) ?>
+                </p>
+                <?php
+            }
+            ?>
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-info" style="color: #FFFFFF ; width: 100%">Đăng kí</button>
@@ -56,11 +107,11 @@
     }
 
     form h1 {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
 
     #title {
-        top: 30%;
+        top: 15%;
     }
 
     a {
@@ -68,5 +119,14 @@
         letter-spacing: normal;
         text-decoration: none;
         color: #0dcaf0;
+    }
+
+    .mb-3 p {
+        font-size: 14px;
+        letter-spacing: normal;
+        text-align: left;
+        padding-top: 1px;
+        margin: 0;
+        color: #ea0b0b;
     }
 </style>

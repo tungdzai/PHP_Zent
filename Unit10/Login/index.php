@@ -21,12 +21,22 @@
         <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Email" name="email">
+            <?php
+            if (isset($_COOKIE)) {
+                ?>
+                <p><?= isset($_COOKIE["error_login"]) ? $_COOKIE["error_login"] : null;
+                    unset($_COOKIE) ?></p>
+
+                <?php
+            }
+            ?>
         </div>
         <div class="error">
 
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                   name="password">
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-info" style="color: #FFFFFF ; width: 100%">Đăng nhập</button>
@@ -65,5 +75,14 @@
         letter-spacing: normal;
         text-decoration: none;
         color: #0dcaf0;
+    }
+
+    .mb-3 p {
+        font-size: 14px;
+        letter-spacing: normal;
+        text-align: left;
+        padding-top: 1px;
+        margin: 0;
+        color: #ea0b0b;
     }
 </style>
