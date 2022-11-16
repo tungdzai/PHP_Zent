@@ -30,15 +30,16 @@ function checkregister($name, $email, $password, $confirm)
         $errors_register["confirm"] = "Mật khẩu không trùng khớp";
         $statusRegister = false;
     }
-
     if ($statusRegister) {
         return array(true, "INSERT INTO users ( name, email, password) VALUES ('" . $name . "','" . $email . "','" . md5($password) . "')");
     } else {
         return array(false, $errors_register);
     }
+
 }
 
 $data_register = checkregister($_POST["name"], $_POST["email"], $_POST["password"], $_POST["confirm"]);
+
 if ($data_register[0] == true) {
     $sql = $data_register[1];
     $status = $connn->query($sql);
