@@ -1,6 +1,6 @@
 <?php
-define('SITE_ROOT', realpath(dirname("\xampp\htdocs\PHP_Zent\Unit10\HW01\image")));
-function fileUpload($inputName, $targetDir, $allowTypes, $maxSize)
+define('SITE_ROOT', realpath(dirname("\xampp\htdocs\PHP_Zent\Project_PHP\Controller\image")));
+function uploadfile($inputName, $targetDir, $allowTypes, $maxSize)
 {
     $uploadStatus = true;
     $targetFile = $targetDir . "/" . basename($_FILES["$inputName"]["name"]);
@@ -45,6 +45,4 @@ function fileUpload($inputName, $targetDir, $allowTypes, $maxSize)
     } else {
         return array(false, $errors);
     }
-
-
 }

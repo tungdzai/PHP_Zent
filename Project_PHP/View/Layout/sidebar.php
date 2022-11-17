@@ -1,5 +1,5 @@
 <?php
-require_once ("categorie_DB.php");
+//require_once ("categorie_DB.php");
 ?>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -14,11 +14,11 @@ require_once ("categorie_DB.php");
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
                         </a>
                         <div class="accordion-item-content">
-                            <?php
-                            foreach ($categories as $category) { ?>
-                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer"><?=  $category["name"]?></p>
-                            <?php }
-                            ?>
+<!--                            --><?php
+//                            foreach ($categories as $category) { ?>
+<!--                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer">--><?//=  $category["name"]?><!--</p>-->
+<!--                            --><?php //}
+//                            ?>
                         </div>
                     </section>
                     <section class="accordion-item">

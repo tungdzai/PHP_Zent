@@ -5,9 +5,6 @@ $status= $connn ->query($sql) ->fetch_assoc();
 if (isset($status)){
     $sqlcookie="select id from users where email= '".$_POST["email"]."' ";
     $status= $connn ->query($sqlcookie) ->fetch_assoc();
-//    setcookie("info",$status["id"],time()*60,"/foo/");
-//    echo  $_COOKIE;
-//    die("1");
     header("Location: ../HW01/index.php");
 }else{
     setcookie("error_login"," Tên đăng nhập hoặc mật khẩu không đúng !" , time()+2);
