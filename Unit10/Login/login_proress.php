@@ -8,7 +8,7 @@ if (isset($status)){
     setcookie("error_login","Tên đăng nhập hoặc mật khẩu không đúng !" , time()+2);
     header("Location:index.php");
 }
-die(1);
+die(1); 
 echo"<pre>";
 print_r($_POST);
 echo "</pre>";
