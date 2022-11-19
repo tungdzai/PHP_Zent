@@ -71,7 +71,7 @@ require_once("pagination_proress.php")
                         if (isset($_GET["search"])) {
                             foreach ($search_arrays as $index => $post) { ?>
                                 <tr>
-                                    <td><?= $index + 1 ?></td>
+                                    <td><?= ($index +1) ?></td>
                                     <td><?= $post["title"] ?></td>
                                     <td><?= $post["description"] ?></td>
                                     <td class="imgWrap">
@@ -89,7 +89,7 @@ require_once("pagination_proress.php")
                         } else {
                             foreach ($post_page as $index => $post) { ?>
                                 <tr>
-                                    <td><?= $index + 1 ?></td>
+                                    <td><?= ($index + 1+$limit*($current_page -1)) ?></td>
                                     <td><?= $post["title"] ?></td>
                                     <td><?= $post["description"] ?></td>
                                     <td class="imgWrap">

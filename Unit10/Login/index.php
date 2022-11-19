@@ -18,6 +18,15 @@
 <div id='title'>
     <form action="login_proress.php" method="post">
         <h1>Login</h1>
+        <?php
+        if (isset($_COOKIE["successRigister"])) {
+            ?>
+            <div class="alert alert-success successRigister " role="alert">
+                <?= $_COOKIE["successRigister"]?>
+            </div>
+            <?php
+        }
+        ?>
         <div class="mb-3">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Email" name="email">
@@ -26,7 +35,6 @@
                 ?>
                 <p><?= isset($_COOKIE["error_login"]) ? $_COOKIE["error_login"] : null;
                     unset($_COOKIE) ?></p>
-
                 <?php
             }
             ?>
@@ -84,5 +92,10 @@
         padding-top: 1px;
         margin: 0;
         color: #ea0b0b;
+    }
+
+    .successRigister {
+        font-size: 15px;
+        letter-spacing: normal;
     }
 </style>
