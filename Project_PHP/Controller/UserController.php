@@ -1,9 +1,10 @@
 <?php
 
-class UserControlller
+class UserController
 {
     public function index()
     {
         echo "hihi";
+        
     }
 }

@@ -8,14 +8,20 @@ class CategorieController
         $categories=$model->getAll();
         require_once("./View/Categories/categories_form.php");
     }
-    public function insert($data){
-        $model= new Categories();
-        $status_categorie=$model->insertinto();
-        if ($status_categorie) {
-            setcookie("success",$data["submit"] == null ?"Thêm  mới thành công":"Cập nhật thành công", time() + 1);
-        } else {
-            setcookie("error", $data["submit"] == null ?"Lỗi thêm mới":"Lỗi cập nhật", time() + 1);
+    public function insert(){
+        if ($_SERVER["REQUEST_METHOD"] === "POST"){
+            $name=$_POST["name"];
+            $parent_id=$_POST["parent_id"];
+            $description=$_POST["description"];
+            $thumbnail="";
+
+            $model= new Categories();
+            $insert_categori=$model->insert_categorie($name,$parent_id,$thumbnail,$description);
+            if ($insert_categori){
+                $this->index();
+            }
+
+
         }
-        require_once("./View/Categories/categories_form.php");
     }
 }

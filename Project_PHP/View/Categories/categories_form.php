@@ -1,5 +1,4 @@
 <?php
-session_start();
 //require_once("categorie_DB.php");
 //$id = isset($_GET["id"])?$_GET["id"]: 0;
 //$sql = "select * from categories where id=$id";
