@@ -1,7 +1,8 @@
 <?php
-session_start();
-require_once("categorie_DB.php");
-require_once ("seach_categorie.php")
+//require_once("categorie_DB.php");
+//$id = isset($_GET["id"])?$_GET["id"]: 0;
+//$sql = "select * from categories where id=$id";
+//$categorie_edit = $connn->query($sql)->fetch_assoc(); // Lấy ra 1 bản ghi.
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +17,13 @@ require_once ("seach_categorie.php")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="./View/Layout/style.css">
 </head>
 
 <body class="sb-nav-fixed">
-<?php require_once("header.php"); ?>
+<?php require_once("./View/Layout/header.php"); ?>
 <div id="layoutSidenav">
-    <?php require_once("sidebar.php"); ?>
+    <?php require_once("./View/Layout/sidebar.php"); ?>
     <div id="layoutSidenav_content">
         <div class="error">
             <?php
@@ -37,14 +38,24 @@ require_once ("seach_categorie.php")
                 </div>
                 <?php
             } ?>
+
+        </div>
+        <div class="success">
             <?php
-            if (isset($_SESSION["uploadStatus"]) && $_SESSION["uploadStatus"][0] == true) { ?>
+            if (isset($_COOKIE["success"])) { ?>
                 <div class="alert alert-success" role="alert">
-                    Thêm mới danh mục bài viết thành công.
+                    <?= $_COOKIE["success"] ?>
                 </div>
                 <?php
-                unset($_SESSION["uploadStatus"]);
             } ?>
+            <?php
+            if (isset($_COOKIE["error"])) { ?>
+                <div class="alert alert-success" role="alert">
+                    <?= $_COOKIE["error"] ?>
+                </div>
+                <?php
+            } ?>
+
         </div>
         <!-- main -->
         <main>
@@ -64,42 +75,48 @@ require_once ("seach_categorie.php")
                         </thead>
                         <tbody>
                         <?php
-                        if (count($categories) !=0 ){ ?>
+                        if (count($categories) != 0) { ?>
                             <?php
                             foreach ($categories as $index => $category) { ?>
                                 <tr>
-                                <td><?= $index +1 ?></td>
+                                <td><?= $index + 1 ?></td>
                                 <td><?= $category["name"] ?></td>
                                 <td class="avatar_categorie">
                                     <img src="../HW01/<?= $category["thumbnail"] ?>" alt="">
                                 </td>
                                 <td><?= $category["description"] ?></td>
                                 <td>
-                                    <a href="editCategorie.php?id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
+                                    <a href="categories_form.php?id=<?= $category["id"] ?>"
+                                       class="btn btn-success">Edit</a>
                                     <a href="delete_categorie.php?id=<?= $category["id"] ?>"
                                        class="btn btn-danger">Delete</a>
                                 </td>
                                 </tr><?php
                             }
                             ?>
-                        <?php
-                        }else{
+                            <?php
+                        } else {
                             ?>
                             <td>Chưa có sản phẩm nảo được thêm!</td>
-                        <?php
+                            <?php
                         }
                         ?>
                         </tbody>
                     </table>
                 </form>
-                <form action="categorie_create_proress.php" class="frm_add" method="post" enctype="multipart/form-data"
+                <form action="index.php?mod=categorie&&act=insert" class="frm_add" method="post" enctype="multipart/form-data"
                       role="form">
-                    <h3>Thêm danh mục mới</h3>
+                    <h3>
+                        <?=
+                        isset($_GET["id"]) ? "Chỉnh sửa danh mục " : "Thêm danh mục mới";
+                        ?>
+                    </h3>
                     <hr>
+
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="name">
+                               name="name" value="<?=isset($_GET["id"])? $categorie_edit["name"]:null ?>">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Parent category</label>
@@ -115,23 +132,23 @@ require_once ("seach_categorie.php")
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Avatar</label>
-                        <input type="file" class="form-control" name="thumbnail" >
+                        <input type="file" class="form-control" name="thumbnail">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="description">
+                               name="description" value="<?=isset($_GET["id"])? $categorie_edit["description"]:null ?>" >
                     </div>
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" name="submit" value="<?=isset($_GET["id"])? $_GET["id"]:null ?>"><?=isset($_GET["id"])? "Cập nhật":"Create" ?></button>
                 </form>
             </div>
         </main>
-        <?php require_once("footer.php"); ?>
+        <?php require_once("./View/Layout/footer.php"); ?>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
-<script src="scripts.js"></script>
+<script src="./View/Layout/scripts.js"></script>
 </body>
 </html>
 <style>

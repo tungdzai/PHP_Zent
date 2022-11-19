@@ -1,6 +1,3 @@
-<?php
-require_once ("categorie_DB.php");
-?>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -10,15 +7,15 @@ require_once ("categorie_DB.php");
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>&ensp;Dashboard</div>
                     </section>
                     <section class="accordion-item">
-                        <a href="categories_form.php" style="text-decoration: none">
+                        <a href="index.php?mod=categorie&&act=index" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
                         </a>
                         <div class="accordion-item-content">
-                            <?php
-                            foreach ($categories as $category) { ?>
-                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer"><?=  $category["name"]?></p>
-                            <?php }
-                            ?>
+<!--                            --><?php
+//                            foreach ($categories as $category) { ?>
+<!--                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer">--><?//=  $category["name"]?><!--</p>-->
+<!--                            --><?php //}
+//                            ?>
                         </div>
                     </section>
                     <section class="accordion-item">
