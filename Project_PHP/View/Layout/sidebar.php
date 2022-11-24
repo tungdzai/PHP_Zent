@@ -4,24 +4,48 @@
             <div class="nav">
                 <div class="accordion">
                     <section class="accordion-item">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i>&ensp;Dashboard</div>
+                        <a href="<?= URLADMIN ?>" style="text-decoration: none">
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5)" ><i class="fas fa-tachometer-alt"></i>&ensp;Dashboard</div>
+                        </a>
                     </section>
                     <section class="accordion-item">
-                        <a href="index.php?mod=categorie&&act=index" style="text-decoration: none">
+                        <a href="<?= URLCATEGORY ?>" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
                         </a>
                         <div class="accordion-item-content">
-<!--                            --><?php
-//                            foreach ($categories as $category) { ?>
-<!--                                <p style="padding-left: 50px ;padding-top:10px;cursor: pointer">--><?//=  $category["name"]?><!--</p>-->
-<!--                            --><?php //}
-//                            ?>
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
+                            </a>
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                            </a>
                         </div>
                     </section>
                     <section class="accordion-item">
-                        <a href="post.php" style="text-decoration: none">
-                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-list-ol"></i>&ensp;Quản lý bài viết</div>
+                        <a href="<?=  URLPOST ?>" style="text-decoration: none">
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý bài viết</div>
                         </a>
+                        <div class="accordion-item-content">
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
+                            </a>
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="accordion-item">
+                        <a href="<?= URLUSER ?>" style="text-decoration: none">
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý tài khoản</div>
+                        </a>
+                        <div class="accordion-item-content">
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
+                            </a>
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                            </a>
+                        </div>
                     </section>
                 </div>
 

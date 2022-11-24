@@ -1,9 +1,10 @@
 <?php
 
-class PostControlller
+class PostController
 {
     public function index()
     {
         echo "hihi";
+
     }
 }

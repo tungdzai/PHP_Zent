@@ -24,6 +24,6 @@ if ($data["name"] != null || $data["description"] != null) {
         setcookie("error", $data["submit"] == null ?"Lỗi thêm mới":"Lỗi cập nhật", time() + 1);
     }
 }
-header("Location:categories_form.php");
+header("Location:category_form.php");
 
 
