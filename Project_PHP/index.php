@@ -1,13 +1,13 @@
 <?php
-$mod = isset($_GET["mod"])?$_GET["mod"]:"login";
-$act = isset($_GET["act"])?$_GET["act"]:"index";
+session_start();
+$mod = isset($_GET["mod"])?$_GET["mod"]:"auth";
+$act = isset($_GET["act"])?$_GET["act"]:"login";
 
 //URL
 const URLADMIN="index.php?mod=Admin&&act=index";
-const URLCATEGORY="index.php?mod=category&&act=index";
-const URLPOST="index.php?mod=post&&act=index";
-const URLUSER="index.php?mod=user&&act=index";
-const URLUPDATE="index.php?mod=category&&act=update";
+const URLCATEGORY="index.php?mod=category&&act=";
+const URLPOST="index.php?mod=post&&act=";
+const URLUSER="index.php?mod=user&&act=";
 
 
 

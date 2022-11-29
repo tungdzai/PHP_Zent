@@ -482,7 +482,7 @@ class SMTP
      *
      * @param string $username The user name
      * @param string $password The password
-     * @param string $authtype The auth type (CRAM-MD5, PLAIN, LOGIN, XOAUTH2)
+     * @param string $authtype The Auth type (CRAM-MD5, PLAIN, LOGIN, XOAUTH2)
      * @param OAuthTokenProvider $OAuth An optional OAuthTokenProvider instance for XOAUTH2 authentication
      *
      * @return bool True if successfully authenticated
@@ -503,7 +503,7 @@ class SMTP
             //SMTP extensions are available; try to find a proper authentication method
             if (!array_key_exists('AUTH', $this->server_caps)) {
                 $this->setError('Authentication is not allowed at this stage');
-                //'at this stage' means that auth may be allowed after the stage changes
+                //'at this stage' means that Auth may be allowed after the stage changes
                 //e.g. after STARTTLS
 
                 return false;
@@ -515,14 +515,14 @@ class SMTP
                 self::DEBUG_LOWLEVEL
             );
 
-            //If we have requested a specific auth type, check the server supports it before trying others
+            //If we have requested a specific Auth type, check the server supports it before trying others
             if (null !== $authtype && !in_array($authtype, $this->server_caps['AUTH'], true)) {
-                $this->edebug('Requested auth method not available: ' . $authtype, self::DEBUG_LOWLEVEL);
+                $this->edebug('Requested Auth method not available: ' . $authtype, self::DEBUG_LOWLEVEL);
                 $authtype = null;
             }
 
             if (empty($authtype)) {
-                //If no auth mechanism is specified, attempt to use these, in this order
+                //If no Auth mechanism is specified, attempt to use these, in this order
                 //Try CRAM-MD5 first as it's more secure than the others
                 foreach (['CRAM-MD5', 'LOGIN', 'PLAIN', 'XOAUTH2'] as $method) {
                     if (in_array($method, $this->server_caps['AUTH'], true)) {
@@ -591,7 +591,7 @@ class SMTP
                 //send encoded credentials
                 return $this->sendCommand('Username', base64_encode($response), 235);
             case 'XOAUTH2':
-                //The OAuth instance must be set up prior to requesting auth.
+                //The OAuth instance must be set up prior to requesting Auth.
                 if (null === $OAuth) {
                     return false;
                 }

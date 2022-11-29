@@ -21,11 +21,23 @@
     <div id="layoutSidenav_content">
         <!-- main -->
         <main>
+            <div class="status">
+                <?php
+                if (isset($_SESSION["errorCategory"])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $_SESSION["errorCategory"][0];
+                        unset($_SESSION["errorCategory"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+            </div>
             <div class="container-fluid px-4 categoriesWrap">
-                <form action="#" class="frm_add" method="post" enctype="multipart/form-data" role="form">
+                <form action="<?= URLCATEGORY ?>insert" class="frm_add" method="post" enctype="multipart/form-data"
+                      role="form">
                     <h3>
                         <?=
-                        isset($id)  ? "Chỉnh sửa danh mục" : "Thêm mới danh mục";
+                        isset($id) ? "Chỉnh sửa danh mục" : "Thêm mới danh mục";
                         ?>
                     </h3>
                     <hr>

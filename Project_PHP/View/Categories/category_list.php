@@ -21,6 +21,9 @@
     <div id="layoutSidenav_content">
         <!-- main -->
         <main>
+            <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
+                <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
+            </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
                     <h3>Danh mục bài viết</h3>
@@ -42,11 +45,11 @@
                                 <td><?= $index + 1 ?></td>
                                 <td><?= $category["name"] ?></td>
                                 <td class="avatar_categorie">
-                                    <img src="" alt="">
+                                    <img src="./Public/Storage/<?= $category["thumbnail"] ?>" alt="">
                                 </td>
                                 <td><?= $category["description"] ?></td>
                                 <td>
-                                    <a href="<?= URLUPDATE ?>&&id=<?= $category["id"] ?>"
+                                    <a href="#"
                                        class="btn btn-success">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
@@ -73,7 +76,7 @@
     .categoriesWrap {
         display: flex;
         justify-content: space-between;
-        margin-top: 40px;
+        margin-top: 20px;
     }
 
     .categoriesWrap .table_left {
@@ -83,9 +86,12 @@
         border-radius: 10px;
         margin-right: 10px;
     }
-
+    .avatar_categorie{
+        width: 150px;
+    }
     .avatar_categorie img {
         width: 100%;
+        border-radius: 5px;
     }
 
 </style>

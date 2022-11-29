@@ -9,11 +9,11 @@
                         </a>
                     </section>
                     <section class="accordion-item">
-                        <a href="<?= URLCATEGORY ?>" style="text-decoration: none">
+                        <a href="<?= URLCATEGORY?>index" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
                         </a>
                         <div class="accordion-item-content">
-                            <a href="#" style="text-decoration: none">
+                            <a href="<?= URLCATEGORY?>store" style="text-decoration: none">
                                 <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
                             </a>
                             <a href="#" style="text-decoration: none">
@@ -22,7 +22,7 @@
                         </div>
                     </section>
                     <section class="accordion-item">
-                        <a href="<?=  URLPOST ?>" style="text-decoration: none">
+                        <a href="<?=  URLPOST ?>index" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý bài viết</div>
                         </a>
                         <div class="accordion-item-content">
@@ -35,7 +35,7 @@
                         </div>
                     </section>
                     <section class="accordion-item">
-                        <a href="<?= URLUSER ?>" style="text-decoration: none">
+                        <a href="<?= URLUSER ?>index" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý tài khoản</div>
                         </a>
                         <div class="accordion-item-content">

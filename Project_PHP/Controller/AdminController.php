@@ -1,6 +1,7 @@
 <?php
-class AdminController{
+require_once ("./Controller/BaseController.php");
+class AdminController extends BaseController {
     public function index(){
-        require_once ("./View/Layout/admin.php");
+        $this->view("Layout/admin.php");
     }
 }

@@ -11,6 +11,9 @@
                 <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
             </div>
         </form>
+        <div style="color: #FFFFFF">
+            <Span>Xin chào : <?= $_SESSION["auth"]["name"]?></Span>
+        </div>
     </form>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -22,7 +25,7 @@
                 <li>
                     <hr class="dropdown-divider" />
                 </li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+                <li><a class="dropdown-item" href="index.php?mod=auth&&act=logout">Logout</a></li>
             </ul>
         </li>
     </ul>
