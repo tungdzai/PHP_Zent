@@ -33,18 +33,19 @@
                 } ?>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
-                <form action="<?= URLCATEGORY ?>insert" class="frm_add" method="post" enctype="multipart/form-data"
+                <form action="<?= URLCATEGORY ?><?= isset($_GET["id"]) ? "update":"insert"?>"
+                      class="frm_add" method="post" enctype="multipart/form-data"
                       role="form">
                     <h3>
                         <?=
-                        isset($id) ? "Chỉnh sửa danh mục" : "Thêm mới danh mục";
+                        isset($_GET["id"]) ? "Chỉnh sửa danh mục" : "Thêm mới danh mục";
                         ?>
                     </h3>
                     <hr>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                        <label for="exampleFormControlInput1" class="form-label" >Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="name">
+                               name="name" value="<?=isset($_GET["id"]) ? $category_show["name"] : null ?>">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Parent category</label>
@@ -59,9 +60,11 @@
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Description</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="description">
+                               name="description" value="<?=isset($_GET["id"]) ? $category_show["description"] : null ?>">
                     </div>
-                    <button type="submit" class="btn btn-primary" name="submit">Create</button>
+                    <button type="submit" class="btn btn-primary" name="submit" value="<?= $_GET["id"] ?? null ?>">
+                        <?= isset($_GET["id"]) ? "Cập nhật " : "Thêm mới"; ?>
+                    </button>
                 </form>
             </div>
         </main>

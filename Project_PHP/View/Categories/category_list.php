@@ -21,6 +21,35 @@
     <div id="layoutSidenav_content">
         <!-- main -->
         <main>
+            <div class="status_category">
+                <?php
+                if (isset($_SESSION["statusRemove"])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $_SESSION["statusRemove"][0];
+                        unset($_SESSION["statusRemove"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+                <?php
+                if (isset($_SESSION["errorCategory"])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $_SESSION["errorCategory"][0];
+                        unset($_SESSION["errorCategory"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+                <?php
+                if (isset($_SESSION["successCategory"])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $_SESSION["successCategory"][0];
+                        unset($_SESSION["successCategory"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+            </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
                 <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
             </div>
@@ -40,6 +69,12 @@
                         </thead>
                         <tbody>
                         <?php
+                        if (count($categories) ==0){?>
+                            <td>Chưa có danh mục nào</td>
+                        <?php
+                        }
+                        ?>
+                        <?php
                         foreach ($categories as $index => $category) { ?>
                             <tr>
                                 <td><?= $index + 1 ?></td>
@@ -49,9 +84,31 @@
                                 </td>
                                 <td><?= $category["description"] ?></td>
                                 <td>
-                                    <a href="#"
-                                       class="btn btn-success">Edit</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <a href="<?= URLCATEGORY ?>store&id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Delete
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Bạn muốn xoá danh mục ?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Tất cả hoạt động trên danh mục sẽ bị xoá khỏi danh sách
+                                                        và bạn sẽ không thể mở lại danh mục nữa. Sẽ không có cách nào để
+                                                        hoàn tác. Bạn có chắc không?
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <a href="<?= URLCATEGORY ?>remove&id=<?= $category["id"] ?>" class="btn btn-danger">Delete</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
 

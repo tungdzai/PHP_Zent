@@ -50,13 +50,24 @@ class Model
         return $result;
     }
 
+    public function showCategory($id)
+    {
+        $query = "select * from $this->table where id= " . $id;
+        $result = $this->connn->query($query)->fetch_assoc();
+
+        return $result;
+
+    }
+
     public function update()
     {
     }
 
-    public function delete()
+    public function delete($id)
     {
-
+        $query = "delete  from $this->table where id= " . $id;
+        $result = $this->connn->query($query);
+        return $result;
     }
 
 
