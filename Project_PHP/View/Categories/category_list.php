@@ -49,6 +49,24 @@
                     </div>
                     <?php
                 } ?>
+                <?php
+                if (isset($_SESSION["successUpdate"])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $_SESSION["successUpdate"][0];
+                        unset($_SESSION["successUpdate"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+                <?php
+                if (isset($_SESSION["errorUpdate"])) { ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= $_SESSION["errorUpdate"][0];
+                        unset($_SESSION["errorUpdate"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
                 <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>

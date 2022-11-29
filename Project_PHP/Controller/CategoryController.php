@@ -16,7 +16,7 @@ class CategoryController extends BaseController
     public function store(){
         if (isset($_GET["id"])){
             $model= new Categories();
-            $category_show=$model->showCategory($_GET["id"]);
+            $category_show=$model->show($_GET["id"]);
             $data["category_show"]=$category_show;
             $this->view("Categories/category_form.php",$data);
         }
@@ -58,10 +58,27 @@ class CategoryController extends BaseController
         $errorUpdate = array();
         if ($_POST["name"] == null || $_POST["description"] == null) {
             $errorUpdate[] = "Name và Description không được để trống !";
-            $_SESSION["errorCategory"] = $errorUpdate;
-            $this->redirect("index.php?mod=category&&act=store");
-
+            $_SESSION["errorUpdate"] = $errorUpdate;
+            $this->redirect("index.php?mod=category&&act=store&id=".$id);
         } else {
+            if ($_FILES["thumbnail"]['name'] == '') {
+                $queryThumbnail = '';
+            } else {
+                $uploadFile= new Uploadfile();
+                $uploadFile =$uploadFile->fileUpload("thumbnail", "image", array("jpg", "png", "gif"), 1) ;
+                $_SESSION["uploadStatus"] = $uploadFile;
+                $queryThumbnail = $uploadFile[1];
+            }
+            $model= new Categories();
+            $update =$model->update($id ,$_POST["name"],$_POST["parent_id"],$queryThumbnail,$_POST["description"]);
+            if ($update){
+                $errorUpdate[]="Cập nhật thành công ";
+                $_SESSION["successUpdate"]=$errorUpdate;
+            }else{
+                $errorUpdate[]="Cập nhật không thành công ! ";
+                $_SESSION["errorUpdate"]=$errorUpdate;
+            }
+            $this->redirect("index.php?mod=category&&act=index");
         }
     }
 

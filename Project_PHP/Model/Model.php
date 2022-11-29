@@ -50,7 +50,7 @@ class Model
         return $result;
     }
 
-    public function showCategory($id)
+    public function show($id)
     {
         $query = "select * from $this->table where id= " . $id;
         $result = $this->connn->query($query)->fetch_assoc();
@@ -59,8 +59,11 @@ class Model
 
     }
 
-    public function update()
+    public function update($id,$name,$parent_id,$queryThumbnail,$description)
     {
+        $query= "update $this->table set name ='".$name."',parent_id ='".$parent_id."',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=".$id;
+        $result=$this->connn->query($query);
+        return $result;
     }
 
     public function delete($id)
