@@ -9,14 +9,14 @@
                         </a>
                     </section>
                     <section class="accordion-item">
-                        <a href="<?= URLCATEGORY?>index" style="text-decoration: none">
+                        <a href="#" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
                         </a>
                         <div class="accordion-item-content">
                             <a href="<?= URLCATEGORY?>store" style="text-decoration: none">
                                 <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
                             </a>
-                            <a href="#" style="text-decoration: none">
+                            <a href="<?= URLCATEGORY?>index&&page=1" style="text-decoration: none">
                                 <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
                             </a>
                         </div>

@@ -40,6 +40,16 @@
                     </div>
                     <?php
                 } ?>
+                <?php
+                if (isset($_SESSION["errorImage"])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $_SESSION["errorImage"][0];
+                        unset($_SESSION["errorImage"])
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form action="<?= URLCATEGORY ?><?= isset($_GET["id"]) ? "update":"insert"?>"
@@ -52,7 +62,7 @@
                     </h3>
                     <hr>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label" >Name * </label>
+                        <label for="exampleFormControlInput1" class="form-label" >Name <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
                                name="name" value="<?=isset($_GET["id"]) ? $category_show["name"] : null ?>">
                     </div>
@@ -67,7 +77,7 @@
                         <input type="file" class="form-control" name="thumbnail">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Description *</label>
+                        <label for="exampleFormControlInput1" class="form-label">Description <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
                                name="description" value="<?=isset($_GET["id"]) ? $category_show["description"] : null ?>">
                     </div>

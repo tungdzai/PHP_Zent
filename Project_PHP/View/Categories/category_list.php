@@ -70,15 +70,6 @@
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
                 <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
-                <form action="#" method="post" class="form_pagination">
-                    <select class="form-control" >
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                    </select>
-                    <button> ok</button>
-                </form>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
@@ -156,8 +147,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
 <script src="./View/Layout/scripts.js"></script>
+<script>
+</script>
 </body>
 </html>
+
 
 <style>
     .categoriesWrap {
