@@ -73,5 +73,22 @@ class Model
         return $result;
     }
 
+    public function pagination($page){
+        $sql = "select count(id) as total from $this->table";
+        $total_records = $this->connn->query($sql)->fetch_assoc();
+        $current_page = $page ?? 1; //Trang hiện tại
+        $limit = 5;
+        $total_page = ceil($total_records["total"] / $limit); // Tổng trang
+        $start = ($current_page - 1) * $limit;
+        $result = mysqli_query($this->connn, "SELECT * FROM $this->table LIMIT $start, $limit");
+        $table_page = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $table_page[] = $row;
+        }
+        return array($table_page,$total_page, $limit,$current_page );
+    }
+
+
+
 
 }

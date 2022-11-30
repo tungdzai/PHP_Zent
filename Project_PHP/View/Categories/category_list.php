@@ -70,6 +70,15 @@
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
                 <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
+                <form action="#" method="post" class="form_pagination">
+                    <select class="form-control" >
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
+                    <button> ok</button>
+                </form>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
@@ -87,15 +96,15 @@
                         </thead>
                         <tbody>
                         <?php
-                        if (count($categories) ==0){?>
+                        if (count($categories[0]) ==0){?>
                             <td>Chưa có danh mục nào</td>
                         <?php
                         }
                         ?>
                         <?php
-                        foreach ($categories as $index => $category) { ?>
+                        foreach ($categories[0] as $index => $category) { ?>
                             <tr>
-                                <td><?= $index + 1 ?></td>
+                                <td><?= $index + 1 + $categories[2]*($categories[3] -1) ?></td>
                                 <td><?= $category["name"] ?></td>
                                 <td class="avatar_categorie">
                                     <img src="./Public/Storage/<?= $category["thumbnail"] ?>" alt="">
@@ -137,6 +146,9 @@
                     </table>
                 </form>
             </div>
+            <div class="pagination">
+                <?php require_once ("./View/Layout/pagination.php")?>
+            </div>
         </main>
         <?php require_once("./View/Layout/footer.php"); ?>
     </div>
@@ -167,6 +179,16 @@
     .avatar_categorie img {
         width: 100%;
         border-radius: 5px;
+    }
+    .pagination{
+        padding: 15px;
+        justify-content: right;
+    }
+    .form-control{
+        width: 4%;
+    }
+    .form_pagination{
+        padding-top: 10px;
     }
 
 </style>
