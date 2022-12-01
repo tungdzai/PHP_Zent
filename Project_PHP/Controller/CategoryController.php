@@ -44,19 +44,24 @@ class CategoryController extends BaseController
                 $uploadFile = $uploadFile->fileUpload("thumbnail", "image", array("jpg", "png", "gif"), 1);
                 $_SESSION["uploadStatus"] = $uploadFile;
                 $queryThumbnail = $uploadFile[1];
+                $check = $uploadFile[0];
             }
-            $model = new Categories();
-            $insert = $model->insert($_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
-            if ($insert) {
-                $errorCategory[] = "Thêm mới thành công ";
-                $_SESSION["successCategory"] = $errorCategory;
-                $this->redirect("index.php?mod=category&&act=index");
+            if (!$check) {
+                $_SESSION["errorImage"] = $queryThumbnail;
+                $this->redirect("index.php?mod=category&&act=store");
             } else {
-                $errorCategory[] = "Lỗi khi thêm mới .";
-                $_SESSION["errorCategory"] = $errorCategory;
-                $this->redirect("index.php?mod=category&&act=index");
-
+                $model = new Categories();
+                $insert = $model->insert($_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
+                if ($insert) {
+                    $errorCategory[] = "Thêm mới thành công ";
+                    $_SESSION["successCategory"] = $errorCategory;
+                } else {
+                    $errorCategory[] = "Lỗi khi thêm mới .";
+                    $_SESSION["errorCategory"] = $errorCategory;
+                }
+                $this->redirect("index.php?mod=category&&act=index&&page=1");
             }
+
         }
 
     }
@@ -75,19 +80,26 @@ class CategoryController extends BaseController
             } else {
                 $uploadFile = new Uploadfile();
                 $uploadFile = $uploadFile->fileUpload("thumbnail", "image", array("jpg", "png", "gif"), 1);
-                $_SESSION["uploadStatus"] = $uploadFile;
                 $queryThumbnail = $uploadFile[1];
+                $check = $uploadFile[0];
             }
-            $model = new Categories();
-            $update = $model->update($id, $_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
-            if ($update) {
-                $errorUpdate[] = "Cập nhật thành công ";
-                $_SESSION["successUpdate"] = $errorUpdate;
+            var_dump($check);
+            if (!$check) {
+                $_SESSION["errorImage"] = $queryThumbnail;
+                $this->redirect("index.php?mod=category&&act=store&id=" . $id);
             } else {
-                $errorUpdate[] = "Cập nhật không thành công ! ";
-                $_SESSION["errorUpdate"] = $errorUpdate;
+                $model = new Categories();
+                $update = $model->update($id, $_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
+                if ($update) {
+                    $errorUpdate[] = "Cập nhật thành công ";
+                    $_SESSION["successUpdate"] = $errorUpdate;
+                } else {
+                    $errorUpdate[] = "Cập nhật không thành công ! ";
+                    $_SESSION["errorUpdate"] = $errorUpdate;
+                }
+                $this->redirect("index.php?mod=category&&act=index&&page=1");
             }
-            $this->redirect("index.php?mod=category&&act=index");
+
         }
     }
 
@@ -104,7 +116,7 @@ class CategoryController extends BaseController
             $statusRemove[] = "Lỗi khi xóa !";
             $_SESSION["statusRemove"] = $statusRemove;
         }
-        $this->redirect("index.php?mod=category&&act=index");
+        $this->redirect("index.php?mod=category&&act=index&&page=1");
     }
 
 }
