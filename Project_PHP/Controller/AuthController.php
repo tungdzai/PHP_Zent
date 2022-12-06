@@ -15,6 +15,7 @@ class AuthController extends BaseController {
                 $this->redirect("index.php?mod=Admin&&act=index");
             }else{
                 $_SESSION["errorLogin"]="Email hoặc password không đúng !";
+
                 $this->redirect("index.php?mod=auth&&act=login");
             }
         }
