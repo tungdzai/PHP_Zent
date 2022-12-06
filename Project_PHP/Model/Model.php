@@ -59,10 +59,10 @@ class Model
 
     }
 
-    public function update($id,$name,$parent_id,$queryThumbnail,$description)
+    public function update($id, $name, $parent_id, $queryThumbnail, $description)
     {
-        $query= "update $this->table set name ='".$name."',parent_id ='".$parent_id."',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=".$id;
-        $result=$this->connn->query($query);
+        $query = "update $this->table set name ='" . $name . "',parent_id ='" . $parent_id . "',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=" . $id;
+        $result = $this->connn->query($query);
         return $result;
     }
 
@@ -73,7 +73,8 @@ class Model
         return $result;
     }
 
-    public function pagination($page){
+    public function pagination($page): array
+    {
         $sql = "select count(id) as total from $this->table";
         $total_records = $this->connn->query($sql)->fetch_assoc();
         $current_page = $page ?? 1; //Trang hiện tại
@@ -85,10 +86,19 @@ class Model
         while ($row = mysqli_fetch_assoc($result)) {
             $table_page[] = $row;
         }
-        return array($table_page,$total_page, $limit,$current_page );
+        return array($table_page, $total_page, $limit, $current_page);
     }
 
-
+    public function search($key): array
+    {
+        $query = "select * from $this->table where name like '%{$key}%' ";
+        $results = $this->connn->query($query);
+        $searchList= array();
+        while ($row = $results->fetch_assoc()) {
+            $searchList[] = $row;
+        }
+        return $searchList;
+    }
 
 
 }

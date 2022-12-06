@@ -12,7 +12,7 @@ class AuthController extends BaseController {
         }else{
             $user= new User();
             if ($user->checkLogin($_POST["email"], $_POST["password"])){
-                $this->redirect("index.php?mod=Admin&&act=index");
+                $this->redirect("index.php?mod=Dashboard&&act=index");
             }else{
                 $_SESSION["errorLogin"]="Email hoặc password không đúng !";
                 $this->redirect("index.php?mod=auth&&act=login");

@@ -1,12 +1,14 @@
 <?php
-require_once("./Controller/BaseController.php");
+require_once("./Controller/AdminController.php");
 require_once("./Model/Categories.php");
 require_once("./lib/Uploadfile.php");
 
-class CategoryController extends BaseController
+class CategoryController extends AdminController
 {
+
     public function index()
     {
+
         $model = new Categories();
 //        $categories=$model->getAll();
 //        $data["categories"]=$categories;
@@ -14,6 +16,7 @@ class CategoryController extends BaseController
         $category = $model->pagination($_GET["page"]);
         $data["categories"] = $category;
         $this->view("Categories/category_list.php", $data);
+
 
     }
 
@@ -44,7 +47,7 @@ class CategoryController extends BaseController
                 $uploadFile = $uploadFile->fileUpload("thumbnail", "image", array("jpg", "png", "gif"), 1);
                 $_SESSION["uploadStatus"] = $uploadFile;
                 $queryThumbnail = $uploadFile[1];
-                $check = $uploadFile[0];
+                $check=$uploadFile[0];
             }
             if (!$check) {
                 $_SESSION["errorImage"] = $queryThumbnail;
@@ -65,7 +68,6 @@ class CategoryController extends BaseController
         }
 
     }
-
     public function update()
     {
         $id = $_POST["submit"];
@@ -81,10 +83,8 @@ class CategoryController extends BaseController
                 $uploadFile = new Uploadfile();
                 $uploadFile = $uploadFile->fileUpload("thumbnail", "image", array("jpg", "png", "gif"), 1);
                 $queryThumbnail = $uploadFile[1];
-                $check = $uploadFile[0];
             }
-            var_dump($check);
-            if (!$check) {
+            if (!!$_SESSION["uploadStatus"][0]) {
                 $_SESSION["errorImage"] = $queryThumbnail;
                 $this->redirect("index.php?mod=category&&act=store&id=" . $id);
             } else {

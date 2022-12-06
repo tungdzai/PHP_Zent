@@ -103,10 +103,10 @@
                                 <td><?= $category["description"] ?></td>
                                 <td>
                                     <a href="<?= URLCATEGORY ?>store&id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1)?>">
                                         Delete
                                     </button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1)?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -122,7 +122,6 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <a href="<?= URLCATEGORY ?>remove&id=<?= $category["id"] ?>" class="btn btn-danger">Delete</a>
-
                                                 </div>
                                             </div>
                                         </div>

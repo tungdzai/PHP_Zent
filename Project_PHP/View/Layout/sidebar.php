@@ -4,7 +4,7 @@
             <div class="nav">
                 <div class="accordion">
                     <section class="accordion-item">
-                        <a href="<?= URLADMIN ?>" style="text-decoration: none">
+                        <a href="<?= URLDASHBOARD ?>" style="text-decoration: none">
                             <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5)" ><i class="fas fa-tachometer-alt"></i>&ensp;Dashboard</div>
                         </a>
                     </section>
