@@ -49,6 +49,13 @@ class Model
         $result = $this->connn->query($query);
         return $result;
     }
+    public function insertPost($title, $description, $thumbnail, $content)
+    {
+        $query = "insert into $this->table(title,description,thumbnail,content) values ('" . $title . "','" . $description . "','" . $thumbnail . "','" . $content . "')";
+        $result = $this->connn->query($query);
+        return $result;
+
+    }
 
     public function show($id)
     {

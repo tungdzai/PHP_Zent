@@ -21,104 +21,77 @@
     <div id="layoutSidenav_content">
         <!-- main -->
         <main>
-            <div class="status_category">
+            <div class="status_post">
                 <?php
-                if (isset($_SESSION["statusRemove"])) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= $_SESSION["statusRemove"][0];
-                        unset($_SESSION["statusRemove"])
-                        ?>
-                    </div>
-                    <?php
-                } ?>
-                <?php
-                if (isset($_SESSION["errorCategory"])) { ?>
+                if (isset($_SESSION["errorPost"])) { ?>
                     <div class="alert alert-danger" role="alert">
-                        <?= $_SESSION["errorCategory"][0];
-                        unset($_SESSION["errorCategory"])
+                        <?= $_SESSION["errorPost"][0];
+                        unset($_SESSION["errorPost"])
                         ?>
                     </div>
                     <?php
                 } ?>
                 <?php
-                if (isset($_SESSION["successCategory"])) { ?>
+                if (isset($_SESSION["successPost"])) { ?>
                     <div class="alert alert-success" role="alert">
-                        <?= $_SESSION["successCategory"][0];
-                        unset($_SESSION["successCategory"])
-                        ?>
-                    </div>
-                    <?php
-                } ?>
-                <?php
-                if (isset($_SESSION["successUpdate"])) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= $_SESSION["successUpdate"][0];
-                        unset($_SESSION["successUpdate"])
-                        ?>
-                    </div>
-                    <?php
-                } ?>
-                <?php
-                if (isset($_SESSION["errorUpdate"])) { ?>
-                    <div class="alert alert-success" role="alert">
-                        <?= $_SESSION["errorUpdate"][0];
-                        unset($_SESSION["errorUpdate"])
+                        <?= $_SESSION["successPost"][0];
+                        unset($_SESSION["successPost"])
                         ?>
                     </div>
                     <?php
                 } ?>
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
-                <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
+                <a href="<?= URLPOST ?>store" class="btn  btn-primary" style="color: #FFFFFF;font-weight: 500">Thêm mới</a>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
-                    <h3>Danh mục bài viết</h3>
+                    <h3>Quản lý bài viết</h3>
                     <hr>
                     <table class="table">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Avatar</th>
+                            <th scope="col">Title</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Thumbnail</th>
+                            <th scope="col">Content</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        if (count($categories[0]) ==0){?>
+                        if (count($posts[0]) == 0) {
+                            ?>
                             <td>Chưa có danh mục nào</td>
-                        <?php
+                            <?php
                         }
                         ?>
                         <?php
-                        foreach ($categories[0] as $index => $category) { ?>
+                        foreach ($posts[0] as $index => $post) { ?>
                             <tr>
-                                <td><?= $index + 1 + $categories[2]*($categories[3] -1) ?></td>
-                                <td><?= $category["name"] ?></td>
+                                <td><?= $index + 1 + $posts[2] * ($posts[3] - 1) ?></td>
+                                <td><?= $post["title"] ?></td>
+                                <td><?= $post["description"] ?></td>
                                 <td class="avatar_categorie">
-                                    <img src="./Public/Storage/<?= $category["thumbnail"] ?>" alt="">
+                                    <img src="./Public/Storage/<?= $post["thumbnail"] ?>" alt="">
                                 </td>
-                                <td><?= $category["description"] ?></td>
+                                <td><?= $post["content"] ?></td>
                                 <td>
-                                    <a href="<?= URLCATEGORY ?>store&id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
-<<<<<<< HEAD
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1)?>">
+                                    <a href="<?= URLPOST ?>store&id=<?= $post["id"] ?>" class="btn btn-success">Edit</a>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal<?= $index + 1 + $posts[2] * ($posts[3] - 1) ?>">
                                         Delete
                                     </button>
-                                    <div class="modal fade" id="exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1)?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1) ?>">
-                                        Delete
-                                    </button>
-                                    <div class="modal fade" id="exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
->>>>>>> 5e286dbe85b9e5a88d06b97acbbf6dc1d32e7fde
+                                    <div class="modal fade"
+                                         id="exampleModal<?= $index + 1 + $posts[2] * ($posts[3] - 1) ?>" tabindex="-1"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Bạn muốn xoá danh mục ?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Tất cả hoạt động trên danh mục sẽ bị xoá khỏi danh sách
@@ -127,8 +100,12 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <a href="<?= URLCATEGORY ?>remove&id=<?= $category["id"] ?>" class="btn btn-danger">Delete</a>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <a href="<?= URLPOST ?>remove&id=<?= $post["id"] ?>"
+                                                       class="btn btn-danger">Delete</a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -144,7 +121,7 @@
                 </form>
             </div>
             <div class="pagination">
-                <?php require_once ("./View/Layout/pagination.php")?>
+                <?php require_once("./View/Layout/pagination.php") ?>
             </div>
         </main>
         <?php require_once("./View/Layout/footer.php"); ?>
@@ -173,21 +150,26 @@
         border-radius: 10px;
         margin-right: 10px;
     }
-    .avatar_categorie{
+
+    .avatar_categorie {
         width: 150px;
     }
+
     .avatar_categorie img {
         width: 100%;
         border-radius: 5px;
     }
-    .pagination{
+
+    .pagination {
         padding: 15px;
         justify-content: right;
     }
-    .form-control{
+
+    .form-control {
         width: 4%;
     }
-    .form_pagination{
+
+    .form_pagination {
         padding-top: 10px;
     }
 
