@@ -1,0 +1,107 @@
+<?php
+require_once("./Model/Connection.php");
+
+class Model
+{
+    public $connn;
+
+    function __construct()
+    {
+        $Connection = new Connection();
+        $this->connn = $Connection->connn;
+    }
+
+    protected function where($where = [])
+    {
+        $query = "SELECT * FROM $this->table WHERE ";
+        $string = "";
+        $i = 0;
+        foreach ($where as $column => $value) {
+            $i++;
+            $string .= "$column=" . "'" . $value . "'";
+            if ($i != count($where)) {
+                $string .= " AND ";
+            }
+        }
+        $query .= $string;
+        $result = $this->connn->query($query);
+        $data = array();
+        while ($row = $result->fetch_assoc()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function getAll()
+    {
+        $mySQL = "select * from " . $this->table;
+        $results = $this->connn->query($mySQL);
+        $items = array();
+        while ($row = $results->fetch_assoc()) {
+            $items[] = $row;
+        }
+        return $items;
+    }
+
+    public function insert($name, $opening, $thumbnail, $description)
+    {
+        $query = "insert into $this->table(name,opening,thumbnail,description) values ('" . $name . "','" . $opening . "','" . $thumbnail . "','" . $description . "')";
+        $result = $this->connn->query($query);
+        return $result;
+    }
+    public function insertPost($title, $description, $thumbnail, $content)
+    {
+        $query = "insert into $this->table(title,description,thumbnail,content) values ('" . $title . "','" . $description . "','" . $thumbnail . "','" . $content . "')";
+        $result = $this->connn->query($query);
+        return $result;
+
+    }
+
+    public function show($id)
+    {
+        $query = "select * from $this->table where id= " . $id;
+        $result = $this->connn->query($query)->fetch_assoc();
+
+        return $result;
+
+    }
+
+    public function update($id,$name,$opening,$queryThumbnail,$description)
+    {
+        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=".$id;
+        $result=$this->connn->query($query);
+        return $result;
+    }
+    public function updatePost($id,$title,$description,$queryThumbnail,$content)
+    {
+        $query= "update $this->table set title ='".$title."',description ='".$description."',thumbnail='" . $queryThumbnail . "',content='" . $content. "' where id=".$id;
+        $result=$this->connn->query($query);
+        return $result;
+    }
+
+    public function delete($id)
+    {
+        $query = "delete  from $this->table where id= " . $id;
+        $result = $this->connn->query($query);
+        return $result;
+    }
+
+    public function pagination($page){
+        $sql = "select count(id) as total from $this->table";
+        $total_records = $this->connn->query($sql)->fetch_assoc();
+        $current_page = $page ?? 1; //Trang hiện tại
+        $limit = 5;
+        $total_page = ceil($total_records["total"] / $limit); // Tổng trang
+        $start = ($current_page - 1) * $limit;
+        $result = mysqli_query($this->connn, "SELECT * FROM $this->table LIMIT $start, $limit");
+        $table_page = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $table_page[] = $row;
+        }
+        return array($table_page,$total_page, $limit,$current_page );
+    }
+
+
+
+
+}

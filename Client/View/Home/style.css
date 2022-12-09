@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+.container-fluid {
+    padding: 0;
+    background-color: #fdfcf0;
+}
+
+.topbar {
+    background-color: #efebdb;
+    color: rgb(0, 0, 0);
+    font-style: normal;
+    font-size: 15px;
+    line-height: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.topbar .header_top {
+    padding-right: 25px;
+}
+
+/*menu*/
+.headerWrap {
+    background: url("https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-top.png") repeat-x scroll transparent;
+    background-size: 10px 135px;
+    padding-top: 42px;
+    padding-bottom: 55px;
+}
+
+.menu_area {
+    margin: 0 auto;
+}
+
+.menu_area > ul {
+    color: black;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 500;
+}
+
+.menu_area > ul > li {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    padding: 20px 0;
+    z-index: 1;
+}
+
+.dropdown li {
+    background: #646262;
+    color: #FFFFFF;
+    display: none;
+}
+
+.dropdown li:hover {
+    color: #d33636;
+
+}
+
+.menu_area li:hover > .dropdown li {
+    display: block;
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+}
+
+.menu_area li:hover > .dropdown li {
+    transform-origin: top center;
+    opacity: 0;
+}
+
+.menu_area li:hover > .dropdown li:nth-child(1) {
+    animation: animate 300ms ease-in-out forwards;
+    animation-delay: -150ms;
+}
+
+.menu_area li:hover > .dropdown li:nth-child(2) {
+    animation: animate 300ms ease-in-out forwards;
+    animation-delay: 0ms;
+}
+
+.menu_area li:hover > .dropdown li:nth-child(3) {
+    animation: animate 300ms ease-in-out forwards;
+    animation-delay: 150ms;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+    50% {
+        transform: rotateX(20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+.header {
+    background-color: #fcfcfc;
+}
+
+.header img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.menu li {
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.btn {
+    background-color: #fcfcfc;
+    color: #000;
+    border: none;
+
+}
+
+.bar {
+    display: inline-block;
+}
+
+.close {
+    display: none;
+    color: #FF0000;
+}
+
+.close i {
+    padding-left: 16px;
+}
+
+.r2_right {
+    padding: 10px;
+}
+
+.r2_right i {
+    padding: 10px;
+}
+
+.bag {
+    position: relative;
+}
+
+.dot01 {
+    padding-top: 1px;
+    position: absolute;
+    top: -5px;
+    right: -12px;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #ed7989;
+    font-size: 10px;
+    font-weight: 100;
+    color: #ffffff;
+}
+
+/*slide*/
+.slide_show {
+    margin: 0 auto;
+    width: 53%;
+}
+
+.showSlideWrap {
+    background: url("https://www.cgv.vn/skin/frontend/cgv/default/images/bg_c_bricks.png") repeat-x scroll;
+}
+
+/*footer*/
+#row12 {
+    background: url("https://www.cgv.vn/skin/frontend/cgv/default/images/bg_c_bricks.png") repeat-x scroll transparent;
+    color: #FFFFFF;
+    width: 101%;
+}
+
+#row12 div {
+    padding: 10px;
+}
+
+#row12 h6 {
+    font-weight: 900;
+    padding: 0px 0 30px 0;
+}
+
+#row12 li {
+    padding: 5px 0;
+}
+
+#row12 li a {
+    color: #000;
+}
+
+#row12 li:hover a {
+    color: #e85205;
+}
+
+#row12 i {
+    font-size: 12px;
+    padding-right: 20px;
+}
+
+#footer {
+    background-color: #212121;
+    padding: 20px 0 0px;
+    color: #ffffff;
+    width: 101%;
+}
+
+#footer span {
+    color: #f379a7;
+}
+
+#row12 i:hover {
+    color: #e85205;
+}
+
+.plus {
+    display: inline-block;
+}
+
+.minus {
+    display: none;
+}
+
+.footer_slide_banner {
+    border-bottom: 2px solid #494848;
+    border-top: 2px solid #494848;
+    padding: 20px 5px;
+    background-color: #fdfcf0;
+}
+
+/*main*/
+.sanPham {
+    margin-top: 50px;
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.card {
+    margin-bottom: 50px;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.card-block {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.94);
+    padding: 5px;
+}
+
+.card-block p {
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+.card-block p:hover {
+    color: #e85205;
+}
+
+.xemThem {
+    border: 1px solid #efefef;
+    padding: 10px;
+    background-color: #efefef;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.xemThem:hover {
+    background: #adacac;
+    color: #FFFFFF;
+
+}
+
+.bannerWrap {
+    padding: 20px 0;
+    background-color: #fdfcf0;
+}
+
+.itemWrap {
+    position: relative;
+}
+
+
+/*back to top*/
+#back-to-top {
+    position: fixed;
+    bottom: 70px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    background-color: #000000;
+    text-align: center;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen  and (max-width: 820px) {
+    .cart_gh-left div {
+        padding: 0;
+    }
+
+    .input-number {
+        padding: 4px;
+    }
+
+    .ct_text h4 {
+        font-size: 20px;
+    }
+
+    .ct_text p {
+        font-size: 13px;
+    }
+
+    .cart-ttkh h6 {
+        padding: 0px;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 400px) {
+    .item_cart {
+        justify-content: center;
+        padding-right: 0;
+    }
+
+    .item_img img {
+        padding: 2px;
+    }
+
+    .item_text p {
+        font-size: 11px;
+    }
+
+    .number_cart p {
+        font-size: 11px;
+        padding: 0 4px;
+    }
+
+    .cart-tt {
+        margin-left: -30px;
+    }
+
+    .input-group-btn {
+        width: 40%;
+    }
+}
