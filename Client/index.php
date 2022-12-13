@@ -6,6 +6,7 @@ $act = isset($_GET["act"])?$_GET["act"]:"index";
 // URL
 const  URLLOGIN="index.php?mod=Login&&act=";
 const  URLCREATE="index.php?mod=Create&&act=";
+const  URLBOOKING="index.php?mod=Booking&&act=";
 
 
 $controller_name = ucfirst($mod) . "Controller";

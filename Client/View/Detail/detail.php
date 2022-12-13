@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./View/Public/style.css">
+    <script src="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 </head>
 <body>
 <?php
@@ -22,6 +24,14 @@ require_once("./View/Layout/topbar.php")
         require_once("./View/Layout/header.php")
         ?>
     </div>
+    <div class="breadcrumbs">
+        <ul class="col-lg-10 col-md-12 col-12 mx-auto px-md-0 row">
+            <li class="home"><a href="#" style="color: #1c1f23"><i class="fas fa-home"></i></a><i class="fas fa-chevron-right"></i></li>
+            <li class="category">Phim<i class="fas fa-chevron-right"></i></li>
+            <li class="category">Phim đang chiếu<i class="fas fa-chevron-right"></i></li>
+            <li class="category"><?=$detail["name"]?></li>
+        </ul>
+    </div>
 
     <!-- main -->
     <!--    Detail -->
@@ -33,7 +43,32 @@ require_once("./View/Layout/topbar.php")
                         <img src="../Admin/Public/Storage/<?=$detail["thumbnail"]?>" alt="">
                     </div>
                     <div class="detail_top_left_bottom">
-                        <button >Đặt vé</button>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+                            Đặt vé
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="<?= URLBOOKING?>index" method="post" class="booking_online">
+                                        <h3><?=$detail["name"]?> </h3>
+                                        <select  name="cinema" class="cinemasWrap">
+                                            <option selected>Chọn rạp</option>
+                                            <?php
+                                            foreach ($cinemas as $index => $cinema) {?>
+                                                <option value="<?=$cinema["id"]?>"><?=$cinema["nameCinema"]?></option>
+                                                <?php
+                                            }
+                                            ?>
+                                        </select>
+                                        <input type="date" min="2022-12-07"  name="dateBooking" class="dateBooking">
+                                        <input type="text" id="time" placeholder="Time" name="timeBooking">
+                                        <button type="submit" name="category_id" value="<?= $_GET["id"]?>"> Đặt vé</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="detail_top_right">
@@ -60,30 +95,10 @@ require_once("./View/Layout/topbar.php")
                 <h3 style="border-bottom: 1px solid rgba(204,28,28,0.9); width: max-content;padding-bottom: 10px">NỘI DUNG PHIM</h3>
                 <p><?=$detail["content"]?></p>
             </div>
-            <div class="booking_online">
-                <h3 style="border-bottom: 1px solid rgba(204,28,28,0.9); width: max-content;padding-bottom: 10px">XEM LỊCH CHIẾU</h3>
-                <form action="#" class="frmbooking">
-                    <select class="form_rap">
-                        <option selected>Chọn rạp</option>
-                        <option value="1">Vincom Center Bà Triệu</option>
-                        <option value="2">Vincom Nguyễn Chí Thanh</option>
-                        <option value="3">Vincom Royal City</option>
-                        <option value="4">Trương Định Plaza</option>
-                        <option value="5">Vincom Bắc Từ Liêm</option>
-                        <option value="6">Vincom Trần Duy Hưng</option>
-                        <option value="7">Hồ Gươm Plaza</option>
-                        <option value="8">Rice City</option>
-                        <option value="9">Vincom Long Biên</option>
-                        <option value="10">Sun Grand Thụy Khuê</option>
-                        <option value="11">Vincom Ocean Park</option>
-                    </select>
-                    <input type="date" min="2022-12-07" class="frm_date">
-                    <button type="submit"> Mua vé</button>
-                </form>
-            </div>
         </div>
     </div>
 </div>
+
 <!-- footer -->
 <div class="footer_slide_banner row col-lg-12 mx-auto">
     <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/brand-type-film-footer_ver2.png" alt=""
@@ -150,6 +165,18 @@ require_once("./View/Layout/topbar.php")
 </script>
 </body>
 </html>
+<script>
+    var timepicker = new TimePicker('time', {
+        lang: 'en',
+        theme: 'dark'
+    });
+    timepicker.on('change', function(evt) {
+
+        var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+        evt.element.value = value;
+
+    });
+</script>
 <style>
     .detail_top{
         display: flex;
@@ -211,38 +238,56 @@ require_once("./View/Layout/topbar.php")
         border-radius: 7px;
 
     }
+
+    .breadcrumbs{
+        background-color: #f1f0e5;
+        padding: 1px 0;
+        border-bottom: 1px solid #cacac0;
+    }
+    .breadcrumbs ul{
+        display: flex;
+        margin: 2px;
+    }
+    .breadcrumbs ul li{
+       font-size: 15px;
+    }
+    .breadcrumbs ul li i{
+        padding: 0 5px;
+        color: #565657;
+    }
+    .category{
+        color: #565657;
+    }
     .booking_online h3{
         font-size: 20px;
+        margin-bottom: 30px;
     }
-    .form_rap{
-        padding: 5px;
-        width: 250px;
-        background-color: #fdfcf0;
-        border-radius: 5px;
-        margin-right: 100px;
-    }
-    .frm_date{
-        padding: 3px;
-        width: 200px;
-        background-color: #fdfcf0;
-        border-radius: 5px;
-        border: 1px solid rgb(118, 118, 118);
-        margin-right: 100px;
 
-
-    }
-    .frmbooking{
-        display: flex;
-    }
-    .frmbooking button{
-        background-color: #F10202;
-        border: none;
-        padding: 5px 17px;
-        color: #FFFFFF;
-        font-weight: 500;
-        border-radius: 7px;
-    }
     .booking_online{
-        margin-bottom: 200px;
+        padding: 15px;
+        background-color: #fdfcf0;
+    }
+    .cinemasWrap{
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 50px;
+        background-color: #fdfcf0;
+    }
+    .dateBooking{
+        width: 100%;
+        padding: 4px;
+        margin-bottom: 50px;
+        background-color: #fdfcf0;
+        border: 1px solid rgb(118, 118, 118);
+    }
+    #time{
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 50px;
+        background-color: #fdfcf0;
+        border: 1px solid rgb(118, 118, 118);
+    }
+    ._jw-tpk-container{
+        height: 190px;
     }
 </style>
