@@ -20,7 +20,7 @@
     <?php require_once("./View/Layout/sidebar.php"); ?>
     <div id="layoutSidenav_content">
         <!-- main -->
-        <main>
+        <main style="background-color: #fdfcf0">
             <div class="status_category">
                 <?php
                 if (isset($_SESSION["statusRemove"])) { ?>
@@ -69,7 +69,8 @@
                 } ?>
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
-                <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới phim</a>
+                <a href="<?= URLCATEGORY ?>store" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm mới
+                    phim</a>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
@@ -82,38 +83,52 @@
                             <th scope="col">Movie name</th>
                             <th scope="col">Opening movie</th>
                             <th scope="col">Avatar</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Carouse</th>
+                            <th scope="col">Age</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        if (count($categories[0]) ==0){?>
+                        if (count($categories[0]) == 0) {
+                            ?>
                             <td>Chưa có danh mục nào</td>
-                        <?php
+                            <?php
                         }
                         ?>
                         <?php
                         foreach ($categories[0] as $index => $category) { ?>
                             <tr>
-                                <td><?= $index + 1 + $categories[2]*($categories[3] -1) ?></td>
+                                <td><?= $index + 1 + $categories[2] * ($categories[3] - 1) ?></td>
                                 <td><?= $category["name"] ?></td>
-                                <td><?=$category["opening"] ?></td>
+                                <td><?= $category["opening"] ?></td>
                                 <td class="avatar_categorie">
                                     <img src="./Public/Storage/<?= $category["thumbnail"] ?>" alt="">
+                                </td>
+                                <td style="text-align: center"><?php
+                                    if ($category["carouse"] == 1) {
+                                        echo "Có";
+                                    } else {
+                                        echo "Không";
+                                    }
+                                    ?>
                                 </td>
                                 <td><?= $category["description"] ?></td>
                                 <td>
                                     <a href="<?= URLCATEGORY ?>store&id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1) ?>">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal<?= $index + 1 + $categories[2] * ($categories[3] - 1) ?>">
                                         Delete
                                     </button>
-                                    <div class="modal fade" id="exampleModal<?= $index + 1 + $categories[2]*($categories[3] -1) ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade"
+                                         id="exampleModal<?= $index + 1 + $categories[2] * ($categories[3] - 1) ?>"
+                                         tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">Bạn muốn xoá danh mục ?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>Tất cả hoạt động trên danh mục sẽ bị xoá khỏi danh sách
@@ -122,8 +137,11 @@
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <a href="<?= URLCATEGORY ?>remove&id=<?= $category["id"] ?>" class="btn btn-danger">Delete</a>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close
+                                                    </button>
+                                                    <a href="<?= URLCATEGORY ?>remove&id=<?= $category["id"] ?>"
+                                                       class="btn btn-danger">Delete</a>
 
                                                 </div>
                                             </div>
@@ -140,7 +158,7 @@
                 </form>
             </div>
             <div class="pagination">
-                <?php require_once ("./View/Layout/pagination.php")?>
+                <?php require_once("./View/Layout/pagination.php") ?>
             </div>
         </main>
         <?php require_once("./View/Layout/footer.php"); ?>
@@ -169,21 +187,26 @@
         border-radius: 10px;
         margin-right: 10px;
     }
-    .avatar_categorie{
+
+    .avatar_categorie {
         width: 150px;
     }
+
     .avatar_categorie img {
         width: 100%;
         border-radius: 5px;
     }
-    .pagination{
+
+    .pagination {
         padding: 15px;
         justify-content: right;
     }
-    .form-control{
+
+    .form-control {
         width: 4%;
     }
-    .form_pagination{
+
+    .form_pagination {
         padding-top: 10px;
     }
 

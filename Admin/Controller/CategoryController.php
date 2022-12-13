@@ -45,7 +45,7 @@ class CategoryController extends BaseController
                 $this->redirect("index.php?mod=category&&act=store");
             } else {
                 $model = new Categories();
-                $insert = $model->insert($_POST["name"], $_POST["opening"], $queryThumbnail, $_POST["description"]);
+                $insert = $model->insert($_POST["name"], $_POST["opening"], $queryThumbnail, $_POST["carouse"],$_POST["description"]);
                 if ($insert) {
                     $errorCategory[] = "Thêm mới thành công ";
                     $_SESSION["successCategory"] = $errorCategory;
@@ -81,7 +81,7 @@ class CategoryController extends BaseController
                 $this->redirect("index.php?mod=category&&act=store&id=" . $id);
             } else {
                 $model = new Categories();
-                $update = $model->update($id, $_POST["name"], $_POST["opening"], $queryThumbnail, $_POST["description"]);
+                $update = $model->update($id, $_POST["name"], $_POST["opening"], $queryThumbnail,$_POST["carouse"], $_POST["description"]);
                 if ($update) {
                     $errorUpdate[] = "Cập nhật thành công ";
                     $_SESSION["successUpdate"] = $errorUpdate;

@@ -1,44 +1,56 @@
-<div class="bd-example slide_show">
+<div class="bd-example slide_show" style="width: 80%">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1" class=""></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="3" class=""></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="4" class=""></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="5" class=""></li>
+            <?php
+            $sum = 0;
+            foreach ($categories as $index => $category) {
+                if ($category["carouse"] == 1) {
+                    $sum++;
+                }
+            }
+            for ($i = 0; $i < $sum; $i++) {
+                if ($i == 0) {
+                    ?>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                    <?php
+                } else {
+                    ?>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="<?=$i?>" class=""></li>
+                    <?php
+
+                }
+
+            }
+            ?>
         </ol>
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=777&amp;fg=555&amp;text=First slide"
-                     alt="First slide" src="https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/t/r/tro_t_n_r_c_r__980wx448h.jpg">
-            </div>
-            <div class="carousel-item ">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
-                     alt="Second slide" src="https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980x448_180.jpg">
-            </div>
-            <div class="carousel-item ">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
-                     alt="Second slide" src="https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/l/a/late_shift_-_rolling_banner_980x448.jpg">
-            </div>
-            <div class="carousel-item ">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
-                     alt="Second slide" src="https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/r/o/rolling_banner_980wx448h_1_1.jpg">
-            </div>
-            <div class="carousel-item ">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
-                     alt="Second slide" src="	https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980_x_448__10.jpg">
-            </div>
-            <div class="carousel-item ">
-                <img class="d-block img-fluid"
-                     data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
-                     alt="Second slide" src="	https://www.cgv.vn/media/banner/cache/1/b58515f018eb873dafa430b6f9ae0c1e/9/8/980wx448h_1_3.jpg">
-            </div>
+            <?php
+            $indexCarouse = array();
+            foreach ($categories as $index => $category) {
+                if ($category["carouse"] == 1) {
+                    $indexCarouse[] = $index;
+                }
+            }
+            foreach ($categories as $index => $category) {
+                if ($category["carouse"] == 1) {
+                    ?>
+                    <div class="carousel-item
+                         <?php
+                    if ($index == min($indexCarouse)) {
+                        echo "active";
+                    }
+                    ?>
+                    ">
+                        <img class="d-block img-fluid"
+                             data-src="holder.js/900x300?auto=yes&amp;bg=666&amp;fg=444&amp;text=Second slide"
+                             alt="Second slide"
+                             src="../Admin/Public/Storage/<?= $category["thumbnail"] ?>">
+                    </div>
+                    <?php
+                }
+
+            }
+            ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

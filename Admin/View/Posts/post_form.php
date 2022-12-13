@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Danh mục bài viết</title>
+    <title>Chi tiết phim</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
@@ -20,7 +20,7 @@
     <?php require_once("./View/Layout/sidebar.php"); ?>
     <div id="layoutSidenav_content">
         <!-- main -->
-        <main>
+        <main style="background-color: #fdfcf0">
             <div class="status">
                 <?php
                 if (isset($_SESSION["errorPost"])) { ?>
@@ -31,44 +31,94 @@
                     </div>
                     <?php
                 } ?>
-                <?php
-                if (isset($_SESSION["errorImage"])) { ?>
-                    <div class="alert alert-danger" role="alert">
-                        <?= $_SESSION["errorImage"][0];
-                        unset($_SESSION["errorImage"])
-                        ?>
-                    </div>
-                    <?php
-                } ?>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
-                <form action="<?= URLPOST ?><?= isset($_GET["id"]) ? "update":"insert"?>"
+                <form action="<?= URLPOST ?><?= isset($_GET["id"]) ? "update" : "insert" ?>"
                       class="frm_add" method="post" enctype="multipart/form-data"
                       role="form">
                     <h3>
                         <?=
-                        isset($_GET["id"]) ? "Chỉnh sửa bài viết" : "Thêm mới bài viết";
+                        isset($_GET["id"]) ? "Chỉnh sửa chi tiết phim " : "Thêm mới chi tiết phim";
                         ?>
                     </h3>
                     <hr>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label" >Title<span style="color: red"> * </span></label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="title" value="<?=isset($_GET["id"]) ? $post_show["title"] : null ?>">
+                    <div class="form-group mb-3">
+                        <label for="">Phim<span style="color: red"> * </span></label>
+                        <select class="form-control" name="category_id">
+                            <option value="<?= isset($_GET["id"]) ? $post_show["category_id"]: 0 ?>"><?= isset($_GET["id"]) ? $post_show["name"]: null ?></option>
+                            <?php
+                            foreach ($list_phim as $index => $item) { ?>
+                                <option value="<?= $item["id"] ?>"><?= $item["name"] ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                        <?php
+                        if (isset($_SESSION["errorsPost"]["category_id"])) {
+                            ?>
+                            <div class="errorPost">
+                               <?=$_SESSION["errorsPost"]["category_id"];
+                               unset($_SESSION["errorsPost"]["category_id"])?>
+                            </div>
+                            <?php
+
+                        }
+                        ?>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Description <span style="color: red"> * </span></label>
+                        <label for="exampleFormControlInput1" class="form-label">Quốc gia<span
+                                    style="color: red"> * </span></label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
-                               name="description" value="<?=isset($_GET["id"]) ? $post_show["description"] : null ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Avatar<span style="color: red"> * </span></label>
-                        <input type="file" class="form-control" name="thumbnail">
+                               name="country" value="<?= isset($_GET["id"]) ? $post_show["country"] : null?>">
+                        <?php
+                        if (isset($_SESSION["errorsPost"]["country"])) {
+                            ?>
+                            <div class="errorPost">
+                                <?=$_SESSION["errorsPost"]["country"];
+                                unset($_SESSION["errorsPost"]["country"])?>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        if (isset($_SESSION["errorsUpdate"]["country"])) {
+                            ?>
+                            <div class="errorPost">
+                                <?=$_SESSION["errorsUpdate"]["country"];
+                                unset($_SESSION["errorsUpdate"]["country"])?>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="">Content</label>
-                        <textarea name="content" class="form-control" rows="4" type="text" ><?=isset($_GET["id"]) ? $post_show["content"] : null ?></textarea>
+                        <label for="">Content<span style="color: red"> * </span></label>
+                        <textarea name="content" class="form-control" rows="4"
+                                  type="text"><?= isset($_GET["id"]) ? $post_show["content"] : null ?></textarea>
+                        <?php
+                        if (isset($_SESSION["errorsPost"]["content"])) {
+                            ?>
+                            <div class="errorPost">
+                                <?=$_SESSION["errorsPost"]["content"];
+                                unset($_SESSION["errorsPost"]["content"])?>
+                            </div>
+                            <?php
+
+                        }
+                        ?>
+                        <?php
+                        if (isset($_SESSION["errorsUpdate"]["content"])) {
+                            ?>
+                            <div class="errorPost">
+                                <?=$_SESSION["errorsUpdate"]["content"];
+                                unset($_SESSION["errorsUpdate"]["content"])?>
+                            </div>
+                            <?php
+
+                        }
+                        ?>
                     </div>
+
                     <button type="submit" class="btn btn-primary" name="submit" value="<?= $_GET["id"] ?? null ?>">
                         <?= isset($_GET["id"]) ? "Cập nhật " : "Thêm mới"; ?>
                     </button>
@@ -103,6 +153,13 @@
 
     .avatar_categorie img {
         width: 100%;
+    }
+
+    .errorPost {
+        padding-top: 10px;
+        font-size: 12px;
+        color: #f10202;
+        font-weight: 500;
     }
 
 </style>

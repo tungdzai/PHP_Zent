@@ -1,5 +1,5 @@
 <nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul class="pagination" >
         <?php
         $page_item = $_GET["page"] ?? null;
         $item=$_GET["mod"]."s";
@@ -7,7 +7,7 @@
             $item="categories";
         }
         for ($i = 1; $i <= $$item[1]; $i++) { ?>
-            <li class="page-item"><a class="page-link" href="index.php?mod=<?=$_GET["mod"] ?>&&act=index&&page=<?= $i ?>"><?= $i ?></a></li>
+            <li class="page-item"><a class="page-link" href="index.php?mod=<?=$_GET["mod"] ?>&&act=index&&page=<?= $i ?>" style="background-color: #fdfcf0"><?= $i ?></a></li>
             <?php
         }
         ?>

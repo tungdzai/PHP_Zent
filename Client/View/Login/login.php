@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TH Cinemas </title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.cox`m/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./View/Public/style.css">
 </head>
@@ -22,69 +22,50 @@ require_once("./View/Layout/topbar.php")
         require_once("./View/Layout/header.php")
         ?>
     </div>
-    <div class="showSlideWrap">
-        <?php
-        require_once("./View/Layout/slide.php")
-        ?>
-    </div>
 
     <!-- main -->
-
-    <!-- PHIM ĐANG CHIẾU -->
-    <div class="col-lg-6 col-md-6 mx-auto col-6 text-center animate__animated animate__bounce animate__repeat-1 animate__delay-5s
-		">
-        <h3 class="sanPham" data-aos="fade-up" data-aos-anchor-placement="center-bottom">PHIM ĐANG CHIẾU</h3>
-    </div>
+<!--    LOGIN-->
     <div class="row row1">
-        <div class="col-lg-6 col-md-12 col-12 mx-auto px-md-0 row">
+        <div class="col-lg-5 col-md-12 col-12 mx-auto px-md-0 row loginWrap">
+            <h5>
+                <a href="#" class="active">ĐĂNG NHẬP</a>
+                <a href="<?= URLCREATE ?>index">ĐĂNG KÝ</a>
+            </h5>
             <?php
-            foreach ($categories as $index => $category) {
-                if ($category["carouse"] != 1) {
-                    ?>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card">
-                            <a href="index.php?mod=Detail&&act=index&id=<?= $category["id"] ?>" class="itemWrap">
-                                <img class="card-img-top" src="../Admin/Public/Storage/<?= $category["thumbnail"] ?>"
-                                     alt="Card image cap">
-                            </a>
-                            <a href="index.php?mod=Detail&&act=index&id=<?= $category["id"] ?>">
-                                <div class="card-block">
-                                    <p><?= $category["name"] ?></p>
-                                    <hr>
-                                    <span>
-                                        <?php
-                                        $formatDate = new Format();
-                                        $date = $formatDate->formatDate($category["opening"]);
-                                        echo $date;
-                                        ?>
-                                    </span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                }
+            if (isset($_SESSION["successCreate"])){?>
+                <div class="alert alert-success" role="alert" style="width: 100%">
+                   <?=$_SESSION["successCreate"] ;
+                   unset($_SESSION["successCreate"] )?>
+                </div>
+            <?php
             }
             ?>
+            <form action="index.php?mod=Login&&act=handleLogin" method="post" class="frm_login">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email hoặc Số điện thoại </label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                           placeholder="Email hoặc Số điện thoại" name="email">
+                    <?php
+                    if (isset($_SESSION["errorLogin"])) {
+                        ?>
+                        <div class="error">
+                            <?= $_SESSION["errorLogin"] ;
+                            unset($_SESSION["errorLogin"])?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                </div>
+                <button type="submit" class="btn">Đăng nhập</button>
+                <a href="#" style="text-decoration: none">Quên mật khẩu ?</a>
+            </form>
         </div>
     </div>
-    <div style="text-align: center">
-        <button class="xemThem col-lg-6 col-md-2 col-2 mx-auto">Thêm</button>
-    </div>
-
-</div>
-<!-- blog -->
-<div class="bannerWrap">
-    <div class=" mx-auto text-center row col-lg-7 ">
-        <a href="#">
-            <img src="	https://media.lottecinemavn.com/Media/WebAdmin/4f17c2bc4f37470aa5f03e67e64b4013.jpg" alt=""
-                 width="100%">
-        </a>
-    </div>
-</div>
-<!-- back to top -->
-<div id="back-to-top">
-    <i class="fas fa-angle-double-up"></i>
 </div>
 <!-- footer -->
 <div class="footer_slide_banner row col-lg-12 mx-auto">
@@ -103,7 +84,7 @@ require_once("./View/Layout/topbar.php")
         </div>
         <div class="col-lg-2 col-md-3 col-12">
             <h6>Điều kiện sử dụng<span class="plus d-md-none d-lg-none"><i class="fas fa-plus"></i></span><span
-                        class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
+                    class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
             <ul class=" d-md-block d-lg-block">
                 <li><a href="" style="color: #FFFFFF;text-decoration: none">Điều kiện chung </a></li>
                 <li><a href="" style="color: #FFFFFF;text-decoration: none">Tài khoản thanh toán </a></li>
@@ -113,7 +94,7 @@ require_once("./View/Layout/topbar.php")
         </div>
         <div class="col-lg-3 col-md-7 col-12">
             <h6>Chăm sóc khách hàng <span class="plus d-md-none d-lg-none"><i class="fas fa-plus"></i></span><span
-                        class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
+                    class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
             <ul class="widget-contact-info d-md-block d-lg-block">
                 <li>Phone/Fax: <a href="tel://0334463900" style="color: #FFFFFF;text-decoration: none">0334463900</a>
                 </li>
@@ -152,3 +133,46 @@ require_once("./View/Layout/topbar.php")
 </script>
 </body>
 </html>
+<style>
+    .loginWrap{
+        border: 1px solid red;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+    .loginWrap h5{
+        width: 100%;
+        text-align: center;
+        background-color: #ff0303;
+        padding: 10px;
+    }
+    .loginWrap h5 a{
+        text-decoration: none;
+        color: #FFFFFF;
+        padding: 4px 10px;
+    }
+    .loginWrap h5 .active{
+        border-bottom: 2px solid #FFFFFF;
+    }
+    .frm_login{
+        width: 100%;
+        padding: 40px 20px 20px 20px;
+    }
+    .frm_login button{
+        width: 100%;
+        background-color: #ff0303;
+        color: #FFFFFF;
+        font-weight: 500;
+        padding: 10px 0;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    label{
+        margin-bottom: 1rem;
+    }
+    .error {
+        padding-top: 10px;
+        font-size: 12px;
+        color: #f10202;
+        font-weight: 500;
+    }
+</style>

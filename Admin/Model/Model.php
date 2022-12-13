@@ -43,15 +43,16 @@ class Model
         return $items;
     }
 
-    public function insert($name, $opening, $thumbnail, $description)
+    public function insert($name, $opening, $thumbnail,$carouse, $description)
     {
-        $query = "insert into $this->table(name,opening,thumbnail,description) values ('" . $name . "','" . $opening . "','" . $thumbnail . "','" . $description . "')";
+        $query = "insert into $this->table(name,opening,thumbnail,carouse,description) values ('" . $name . "','" . $opening . "','" . $thumbnail . "','".$carouse."','" . $description . "')";
         $result = $this->connn->query($query);
         return $result;
     }
-    public function insertPost($title, $description, $thumbnail, $content)
+
+    public function insertPost($name, $opening, $thumbnail, $country,$content,$category_id,$description)
     {
-        $query = "insert into $this->table(title,description,thumbnail,content) values ('" . $title . "','" . $description . "','" . $thumbnail . "','" . $content . "')";
+        $query = "insert into $this->table(name,opening,thumbnail,country,content,category_id,description) values ('" . $name . "','" . $opening. "','" . $thumbnail . "','" . $country . "', '".$content."','".$category_id."','".$description."' )";
         $result = $this->connn->query($query);
         return $result;
 
@@ -66,15 +67,16 @@ class Model
 
     }
 
-    public function update($id,$name,$opening,$queryThumbnail,$description)
+    public function update($id,$name,$opening,$queryThumbnail,$carouse,$description)
     {
-        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=".$id;
+        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $queryThumbnail . "',carouse='".$carouse."',description='" . $description . "' where id=".$id;
         $result=$this->connn->query($query);
         return $result;
     }
-    public function updatePost($id,$title,$description,$queryThumbnail,$content)
+
+    public function updatePost($id,$name,$opening,$thumbnail,$country,$content,$description)
     {
-        $query= "update $this->table set title ='".$title."',description ='".$description."',thumbnail='" . $queryThumbnail . "',content='" . $content. "' where id=".$id;
+        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $thumbnail . "',country='".$country."',content='" . $content. "',description='".$description."' where id=".$id;
         $result=$this->connn->query($query);
         return $result;
     }

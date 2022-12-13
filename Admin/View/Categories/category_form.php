@@ -20,7 +20,7 @@
     <?php require_once("./View/Layout/sidebar.php"); ?>
     <div id="layoutSidenav_content">
         <!-- main -->
-        <main>
+        <main style="background-color: #fdfcf0">
             <div class="status">
                 <?php
                 if (isset($_SESSION["errorCategory"])) { ?>
@@ -76,7 +76,27 @@
                         <input type="file" class="form-control" name="thumbnail">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Description</label>
+                        <label for="exampleFormControlInput1" class="form-label">Carouse</label>
+                        <br>
+                        <input type="radio" name="carouse" value="0"
+                            <?php
+                            if (isset($_GET["id"]))
+                                if ($category_show["carouse"] == "1"){
+                                    echo "checked";
+                                }
+                            ?>
+                        > 0 &nbsp;
+                        <input type="radio" name="carouse" value="1"
+                            <?php
+                            if (isset($_GET["id"]))
+                            if ($category_show["carouse"] == "1"){
+                                echo "checked";
+                            }
+                            ?>
+                        > 1
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Age</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
                                name="description" value="<?=isset($_GET["id"]) ? $category_show["description"] : null ?>">
                     </div>
