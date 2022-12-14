@@ -63,7 +63,13 @@ class Model
 
     public function show($id)
     {
-        $query = "select * from $this->table where category_id= " . $id;
+        $query = "select * from $this->table where category_id= " . $id ;
+        $result = $this->connn->query($query)->fetch_assoc();
+        return $result;
+    }
+    public function showCreate($id)
+    {
+        $query = "select * from $this->table where id= " . $id ;
         $result = $this->connn->query($query)->fetch_assoc();
         return $result;
     }
