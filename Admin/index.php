@@ -10,6 +10,7 @@ const URLPOST="index.php?mod=post&&act=";
 const URLUSER="index.php?mod=user&&act=";
 const  URLINFO="index.php?mod=info&&act=index";
 const URLCINEMA="index.php?mod=cinema&&act=";
+const URLSITE="index.php?mod=site&&act=";
 
 
 

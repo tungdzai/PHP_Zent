@@ -28,72 +28,28 @@ require_once("./View/Layout/topbar.php")
         <ul class="col-lg-10 col-md-12 col-12 mx-auto px-md-0 row">
             <li class="home"><a href="#" style="color: #1c1f23"><i class="fas fa-home"></i></a><i class="fas fa-chevron-right"></i></li>
             <li class="category">Phim<i class="fas fa-chevron-right"></i></li>
-            <li class="category">Phim đang chiếu<i class="fas fa-chevron-right"></i></li>
-            <li class="category"><?=$detail["name"]?></li>
+            <li class="category">Phim đang chiếu</li>
         </ul>
     </div>
 
     <!-- main -->
-    <!--    Detail -->
+    <!-- Now Showing -->
     <div class="row row1">
-        <div class="col-lg-8 col-md-12 col-12 mx-auto px-md-0 row detailWrap">
-            <div class="detail_top">
-                <div class="detail_top_left">
-                    <div class="detail_top_left_top">
-                        <img src="../Admin/Public/Storage/<?=$detail["thumbnail"]?>" alt="">
-                    </div>
-                    <div class="detail_top_left_bottom">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-                            Đặt vé
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form action="<?= URLBOOKING?>index" method="post" class="booking_online">
-                                        <h3><?=$detail["name"]?> </h3>
-                                        <select  name="city" class="cinemasWrap" >
-                                            <option selected>Chọn khu vực</option>
-                                            <?php
-                                            foreach ($sites as $index => $site) {?>
-                                                <option value="<?=$site["id"]?>"><?=$site["city"]?></option>
-                                                <?php
-                                            }
-                                            ?>
-                                        </select>
-                                        <input type="date" min="2022-12-07"  name="dateBooking" class="dateBooking">
-                                        <input type="text" id="time" placeholder="Time" name="timeBooking">
-                                        <button type="submit" name="category_id" value="<?= $_GET["id"]?>"> Đặt vé</button>
-                                    </form>
-                                </div>
-                            </div>
+        <div class="col-lg-8 col-md-12 col-12 mx-auto px-md-0 row nowShowing">
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <a href="#" class="itemWrap">
+                        <img class="card-img-top" src=""
+                             alt="Card image cap">
+                    </a>
+                    <a href="#">
+                        <div class="card-block">
+                            <p>#</p>
+                            <hr>
+                            <span></span>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                <div class="detail_top_right">
-                    <div class="detail_top_right_top">
-                        <h2><?=$detail["name"]?></h2>
-                    </div>
-                    <div class="detail_top_right_bottom">
-                        <p>Ngày khởi chiếu: <?php
-                            $formatDate = new Format();
-                            $date = $formatDate->formatDate( $detail["opening"]);
-                            echo $date;
-                           ?>
-                        </p>
-                        <p>Thời lượng:100 phút</p>
-                        <p>Quốc gia :<?=$detail["country"]?></p>
-                        <p>Độ tuổi:<?=$detail["description"]?></p>
-                        <div class="Trailer">
-                            <button>Xem trailer <i class="fas fa-play-circle"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="detail_bottom">
-                <h3 style="border-bottom: 1px solid rgba(204,28,28,0.9); width: max-content;padding-bottom: 10px">NỘI DUNG PHIM</h3>
-                <p><?=$detail["content"]?></p>
             </div>
         </div>
     </div>
@@ -249,7 +205,7 @@ require_once("./View/Layout/topbar.php")
         margin: 2px;
     }
     .breadcrumbs ul li{
-       font-size: 15px;
+        font-size: 15px;
     }
     .breadcrumbs ul li i{
         padding: 0 5px;

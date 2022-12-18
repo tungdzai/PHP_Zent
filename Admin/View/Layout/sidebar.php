@@ -42,7 +42,7 @@
                             <a href="#" style="text-decoration: none">
                                 <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0 "><i class="fas fa-plus"></i>&nbsp; Thêm mới rạp</div>
                             </a>
-                            <a href="<?= URLCINEMA?>index&&page=1" style="text-decoration: none">
+                            <a href="<?= URLSITE?>index&&page=1" style="text-decoration: none">
                                 <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-list"></i>&nbsp; Danh sách rạp</div>
                             </a>
                         </div>

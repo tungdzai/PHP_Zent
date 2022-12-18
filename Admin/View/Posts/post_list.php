@@ -88,7 +88,7 @@
                                     <a href="<?= URLPOST ?>store&id=<?= $post["id"] ?>" class="btn btn-success">Edit</a>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal<?= $index + 1 + $posts[2] * ($posts[3] - 1) ?>">
-                                        Delete
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <div class="modal fade"
                                          id="exampleModal<?= $index + 1 + $posts[2] * ($posts[3] - 1) ?>" tabindex="-1"
@@ -111,7 +111,7 @@
                                                             data-bs-dismiss="modal">Close
                                                     </button>
                                                     <a href="<?= URLPOST ?>remove&id=<?= $post["id"] ?>"
-                                                       class="btn btn-danger">Delete</a>
+                                                       class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 
                                                 </div>
                                             </div>

@@ -1,6 +1,7 @@
 <?php
 require_once("./Controller/BaseController.php");
 require_once("./Model/Cinema.php");
+require_once ("./Model/Home.php");
 class BookingController extends BaseController
 {
     public function index()
@@ -9,11 +10,8 @@ class BookingController extends BaseController
 //        print_r($_POST);
 //        echo "<pre>";
 //        die();
-        $id_cinema = $_POST["cinema"];
-        $model = new  Cinema();
-        $cinema = $model->showCreate($id_cinema);
-        $data["cinema"]= $cinema;
-        $this->view("Booking/booking.php",$data);
+        $city= $_POST["city"];
+        $this->view("Booking/booking.php");
 
     }
 

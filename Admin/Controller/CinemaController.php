@@ -3,9 +3,9 @@ require_once ("./Controller/BaseController.php");
 require_once ("./Model/Cinemas.php");
 class CinemaController extends BaseController {
     public function index(){
-        $model = new Cinemas();
-        $cinemas = $model->pagination($_GET["page"]);
-        $data["cinemas"] = $cinemas;
+        $model= new Cinemas();
+        $cinemas=$model->showCinema($_GET["id"]);
+        $data["cinemas"]=$cinemas;
         $this->view("Cinema/cinema_list.php",$data);
     }
     public function remove()

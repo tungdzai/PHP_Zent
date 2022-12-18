@@ -118,7 +118,7 @@
                                     <a href="<?= URLCATEGORY ?>store&id=<?= $category["id"] ?>" class="btn btn-success">Edit</a>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal<?= $index + 1 + $categories[2] * ($categories[3] - 1) ?>">
-                                        Delete
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <div class="modal fade"
                                          id="exampleModal<?= $index + 1 + $categories[2] * ($categories[3] - 1) ?>"

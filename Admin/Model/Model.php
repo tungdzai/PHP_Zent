@@ -66,6 +66,17 @@ class Model
         return $result;
 
     }
+    public function showCinema($site_id)
+    {
+        $query = "select $this->table.id ,$this->table.nameCinema ,$this->site.city from $this->table inner join $this->site on $this->table.site_id = $this->site.id where $this->table.site_id=".$site_id;
+        $results = $this->connn->query($query);
+        $items = array();
+        while ($row = $results->fetch_assoc()) {
+            $items[] = $row;
+        }
+        return $items;
+
+    }
 
     public function update($id,$name,$opening,$queryThumbnail,$carouse,$description)
     {

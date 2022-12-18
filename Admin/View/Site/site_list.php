@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Cinema</title>
+    <title>Site</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
@@ -24,33 +24,41 @@
             <div class="status_cinemas">
             </div>
             <div class="addcategory" style="padding: 20px 30px ; border-radius: 10px ">
-                <a href="#" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm rạp <?=$cinemas[0]["city"]?></a>
+                <a href="#" class="btn btn-info" style="color: #FFFFFF;font-weight: 500">Thêm rạp phim</a>
             </div>
             <div class="container-fluid px-4 categoriesWrap">
                 <form class="table_left">
-                    <h3>Danh sách rạp phim  <?=$cinemas[0]["city"]?> </h3>
+                    <h3>Danh sách rạp phim</h3>
                     <hr>
                     <table class="table">
                         <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col" style="text-align: center">Cinema name</th>
+                            <th scope="col" style="text-align: center">City</th>
                             <th scope="col" style="text-align: center">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($cinemas as $index => $cinema) { ?>
+                        if (count($sites[0]) == 0) {
+                            ?>
+                            <td>Chưa có rạp phim nào</td>
+                            <?php
+                        }
+                        ?>
+                        <?php
+                        foreach ($sites[0] as $index => $site) { ?>
                             <tr>
-                                <td><?= $index +1 ?></td>
-                                <td style="text-align: center"><?=$cinema["nameCinema"]?></td>
+                                <td><?= $index + 1 + $sites[2] * ($sites[3] - 1) ?></td>
+                                <td style="text-align: center"><?=$site["city"]?></td>
                                 <td style="text-align: center">
+                                    <a href="<?= URLCINEMA ?>index&id=<?= $site["id"] ?>" class="btn btn-success">Detail</a>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal<?= $index?>">
+                                            data-bs-target="#exampleModal<?= $index + 1 + $sites[2] * ($sites[3] - 1) ?>">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                     <div class="modal fade"
-                                         id="exampleModal<?= $index ?>"
+                                         id="exampleModal<?= $index + 1 + $sites[2] * ($sites[3] - 1) ?>"
                                          tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -70,7 +78,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                             data-bs-dismiss="modal">Close
                                                     </button>
-                                                    <a href="<?= URLCINEMA ?>remove&id=<?= $cinema["id"] ?>"
+                                                    <a href="<?= URLSITE ?>remove&id=<?= $site["id"] ?>"
                                                        class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 
                                                 </div>
@@ -83,11 +91,13 @@
                             <?php
                         }
                         ?>
+
                         </tbody>
                     </table>
                 </form>
             </div>
             <div class="pagination">
+                <?php require_once("./View/Layout/pagination.php") ?>
             </div>
         </main>
         <?php require_once("./View/Layout/footer.php"); ?>
@@ -117,6 +127,9 @@
         margin-right: 10px;
     }
 
+    .avatar_categorie {
+        width: 150px;
+    }
 
     .avatar_categorie img {
         width: 100%;
@@ -124,10 +137,16 @@
     }
 
     .pagination {
-        margin-bottom: 100px;
         padding: 15px;
         justify-content: right;
     }
 
+    .form-control {
+        width: 4%;
+    }
+
+    .form_pagination {
+        padding-top: 10px;
+    }
 
 </style>

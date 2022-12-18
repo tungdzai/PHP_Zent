@@ -31,7 +31,16 @@ require_once("./View/Layout/topbar.php")
                 <h3>BOOKING ONLINE</h3>
             </div>
             <div class="infoBooking">
-                <span><?= $cinema["nameCinema"] ?></span>
+                <span class="city">Khu vực:</span>
+                <br>
+                <select  name="cinema" class="cinemasWrap" >
+                    <option selected>Chọn rạp</option>
+                    <option >Hùng Vương Plaza</option>
+                    <option >Vincom Center Landmark 81</option>
+                    <option >Vincom Metropolis Liễu Giai</option>
+                </select>
+                <br>
+                <span>Phim:</span>
                 <br>
                 <span>
                     <?php
@@ -47,7 +56,7 @@ require_once("./View/Layout/topbar.php")
             <div class="ticketbox">
                 <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/bg-screen.png" alt="">
                 <ul class=" row_ticketbox">
-                    <li class="seat ">A9</li>
+                    <li class="seat" >A9</li>
                     <li class="seat ">A8</li>
                     <li class="seat ">A7</li>
                     <li class="seat ">A6</li>
@@ -230,8 +239,13 @@ require_once("./View/Layout/topbar.php")
     function updateSelectedCount() {
         const selectedSeats = document.querySelectorAll('.row_ticketbox .selected');
         const selectedSeatsCount=selectedSeats.length;
+        const seatsIndex=[...selectedSeats].map(function (seat){
+            return [...seats].indexOf(seat);
+        })
+        console.log(seatsIndex);
         total.innerText=selectedSeatsCount * price;
-        console.log(selectedSeats)
+        console.log(total.innerText);
+
     }
 
     ticketbox.addEventListener('click', (e) => {
@@ -317,6 +331,12 @@ require_once("./View/Layout/topbar.php")
         padding: 5px 10px;
         color: #FFFFFF;
         border-radius: 5px;
+    }
+    .cinemasWrap{
+        padding: 5px 0;
+        background-color: #fdfcf0;
+        border: none;
+        margin: 10px 0;
     }
 
 </style>
