@@ -10,40 +10,50 @@
                     </section>
                     <section class="accordion-item">
                         <a href="#" style="text-decoration: none">
-                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&ensp;Danh mục bài viết</div>
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"></i>&nbsp;Phim</div>
                         </a>
                         <div class="accordion-item-content">
                             <a href="<?= URLCATEGORY?>store" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-plus"></i>&nbsp; Thêm mới  </div>
                             </a>
                             <a href="<?= URLCATEGORY?>index&&page=1" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-list"></i>&nbsp; Danh sách phim </div>
                             </a>
                         </div>
                     </section>
                     <section class="accordion-item">
                         <a href="#" style="text-decoration: none">
-                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý bài viết</div>
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Chi tiết phim</div>
                         </a>
                         <div class="accordion-item-content">
                             <a href="<?=  URLPOST ?>store" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0 "><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
                             </a>
                             <a href="<?=  URLPOST ?>index&&page=1" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-list"></i>&nbsp; Danh sách chi tiết phim</div>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="accordion-item">
+                        <a href="#" style="text-decoration: none">
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-film"></i>&nbsp; Rạp</div>
+                        </a>
+                        <div class="accordion-item-content">
+                            <a href="#" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0 "><i class="fas fa-plus"></i>&nbsp; Thêm mới rạp</div>
+                            </a>
+                            <a href="<?= URLSITE?>index&&page=1" style="text-decoration: none">
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-list"></i>&nbsp; Danh sách rạp</div>
                             </a>
                         </div>
                     </section>
                     <section class="accordion-item">
                         <a href="<?= URLUSER ?>index" style="text-decoration: none">
-                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-th"> </i>&nbsp; Quản lý tài khoản</div>
+                            <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) "><i class="fas fa-users"></i> </i>&nbsp; Quản lý tài khoản</div>
                         </a>
                         <div class="accordion-item-content">
                             <a href="#" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-plus"></i>&nbsp; Thêm mới</div>
-                            </a>
-                            <a href="#" style="text-decoration: none">
-                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 30px"><i class="fas fa-list"></i>&nbsp; Danh sách </div>
+                                <div class="sb-nav-link-icon" style="color:rgba(255, 255, 255, 0.5) ;padding: 10px 0"><i class="fas fa-list"></i>&nbsp; Danh sách tài khoản </div>
                             </a>
                         </div>
                     </section>

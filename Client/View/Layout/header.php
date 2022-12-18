@@ -5,13 +5,13 @@
         <ul>
             <li>PHIM
                 <ul class="dropdown">
-                    <li>PHIM ĐANG CHIẾU</li>
-                    <li>PHIM SẮP CHIẾU</li>
+                    <li class="film_lever1"><a href="#" style="text-decoration:none;color: #FFFFFF">PHIM ĐANG CHIẾU </a></li>
+                    <li  class="film_lever2"><a href="#" style="text-decoration:none;color: #FFFFFF">PHIM SẮP CHIẾU</a></li>
                 </ul>
             </li>
             <li>RẠP
                 <ul class="dropdown">
-                    <li>TẤT CẢ CÁC RẠP</li>
+                    <li><a href="<?= URLSITE?>index" style="text-decoration: none;color: #FFFFFF">TẤT CẢ CÁC RẠP</a></li>
                     <li>RẠP ĐẶC BIỆT</li>
                     <li>RẠP 3D</li>
                 </ul>

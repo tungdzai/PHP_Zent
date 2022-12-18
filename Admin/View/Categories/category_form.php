@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Danh mục bài viết</title>
+    <title>Thêm mới phim</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"
@@ -20,7 +20,7 @@
     <?php require_once("./View/Layout/sidebar.php"); ?>
     <div id="layoutSidenav_content">
         <!-- main -->
-        <main>
+        <main style="background-color: #fdfcf0">
             <div class="status">
                 <?php
                 if (isset($_SESSION["errorCategory"])) { ?>
@@ -57,27 +57,46 @@
                       role="form">
                     <h3>
                         <?=
-                        isset($_GET["id"]) ? "Chỉnh sửa danh mục" : "Thêm mới danh mục";
+                        isset($_GET["id"]) ? "Chỉnh sửa phim" : "Thêm mới phim";
                         ?>
                     </h3>
                     <hr>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label" >Name <span style="color: red">*</span></label>
+                        <label for="exampleFormControlInput1" class="form-label" >Movie name <span style="color: red">*</span></label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
                                name="name" value="<?=isset($_GET["id"]) ? $category_show["name"] : null ?>">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Parent category</label>
-                        <select class="form-control" name="parent_id">
-                            <option value="">---</option>
-                        </select>
+                        <label for="exampleFormControlInput1" class="form-label" >Opening Movie<span style="color: red"> *</span></label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder=""
+                               name="opening" value="<?=isset($_GET["id"]) ? $category_show["opening"] : null ?>">
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Avatar<span style="color: red"> * </span></label>
                         <input type="file" class="form-control" name="thumbnail">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Description <span style="color: red">*</span></label>
+                        <label for="exampleFormControlInput1" class="form-label">Carousel</label>
+                        <br>
+                        <input type="radio" name="carouse" value="0"
+                            <?php
+                            if (isset($_GET["id"]))
+                                if ($category_show["carouse"] == "1"){
+                                    echo "checked";
+                                }
+                            ?>
+                        > 0 &nbsp;
+                        <input type="radio" name="carouse" value="1"
+                            <?php
+                            if (isset($_GET["id"]))
+                            if ($category_show["carouse"] == "1"){
+                                echo "checked";
+                            }
+                            ?>
+                        > 1
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Age</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
                                name="description" value="<?=isset($_GET["id"]) ? $category_show["description"] : null ?>">
                     </div>

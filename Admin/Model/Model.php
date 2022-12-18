@@ -43,15 +43,16 @@ class Model
         return $items;
     }
 
-    public function insert($name, $parent_id, $thumbnail, $description)
+    public function insert($name, $opening, $thumbnail,$carouse, $description)
     {
-        $query = "insert into $this->table(name,parent_id,thumbnail,description) values ('" . $name . "','" . $parent_id . "','" . $thumbnail . "','" . $description . "')";
+        $query = "insert into $this->table(name,opening,thumbnail,carouse,description) values ('" . $name . "','" . $opening . "','" . $thumbnail . "','".$carouse."','" . $description . "')";
         $result = $this->connn->query($query);
         return $result;
     }
-    public function insertPost($title, $description, $thumbnail, $content)
+
+    public function insertPost($name, $opening, $thumbnail, $country,$content,$category_id,$description)
     {
-        $query = "insert into $this->table(title,description,thumbnail,content) values ('" . $title . "','" . $description . "','" . $thumbnail . "','" . $content . "')";
+        $query = "insert into $this->table(name,opening,thumbnail,country,content,category_id,description) values ('" . $name . "','" . $opening. "','" . $thumbnail . "','" . $country . "', '".$content."','".$category_id."','".$description."' )";
         $result = $this->connn->query($query);
         return $result;
 
@@ -65,16 +66,28 @@ class Model
         return $result;
 
     }
-
-    public function update($id,$name,$parent_id,$queryThumbnail,$description)
+    public function showCinema($site_id)
     {
-        $query= "update $this->table set name ='".$name."',parent_id ='".$parent_id."',thumbnail='" . $queryThumbnail . "',description='" . $description . "' where id=".$id;
+        $query = "select $this->table.id ,$this->table.nameCinema ,$this->site.city from $this->table inner join $this->site on $this->table.site_id = $this->site.id where $this->table.site_id=".$site_id;
+        $results = $this->connn->query($query);
+        $items = array();
+        while ($row = $results->fetch_assoc()) {
+            $items[] = $row;
+        }
+        return $items;
+
+    }
+
+    public function update($id,$name,$opening,$queryThumbnail,$carouse,$description)
+    {
+        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $queryThumbnail . "',carouse='".$carouse."',description='" . $description . "' where id=".$id;
         $result=$this->connn->query($query);
         return $result;
     }
-    public function updatePost($id,$title,$description,$queryThumbnail,$content)
+
+    public function updatePost($id,$name,$opening,$thumbnail,$country,$content,$description)
     {
-        $query= "update $this->table set title ='".$title."',description ='".$description."',thumbnail='" . $queryThumbnail . "',content='" . $content. "' where id=".$id;
+        $query= "update $this->table set name ='".$name."',opening ='".$opening."',thumbnail='" . $thumbnail . "',country='".$country."',content='" . $content. "',description='".$description."' where id=".$id;
         $result=$this->connn->query($query);
         return $result;
     }

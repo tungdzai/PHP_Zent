@@ -8,9 +8,6 @@ class CategoryController extends BaseController
     public function index()
     {
         $model = new Categories();
-//        $categories=$model->getAll();
-//        $data["categories"]=$categories;
-//        $this->view("Categories/category_list.php",$data);
         $category = $model->pagination($_GET["page"]);
         $data["categories"] = $category;
         $this->view("Categories/category_list.php", $data);
@@ -31,8 +28,8 @@ class CategoryController extends BaseController
     public function insert()
     {
         $errorCategory = array();
-        if ($_POST["name"] == null || $_POST["description"] == null || $_FILES["thumbnail"]['name'] == '') {
-            $errorCategory[] = "Name, Description, Avatar không được để trống !";
+        if ($_POST["name"] == null || $_POST["opening"] == null || $_FILES["thumbnail"]['name'] == '') {
+            $errorCategory[] = "Name, Opening movie, Avatar không được để trống !";
             $_SESSION["errorCategory"] = $errorCategory;
             $this->redirect("index.php?mod=category&&act=store");
 
@@ -48,7 +45,7 @@ class CategoryController extends BaseController
                 $this->redirect("index.php?mod=category&&act=store");
             } else {
                 $model = new Categories();
-                $insert = $model->insert($_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
+                $insert = $model->insert($_POST["name"], $_POST["opening"], $queryThumbnail, $_POST["carouse"],$_POST["description"]);
                 if ($insert) {
                     $errorCategory[] = "Thêm mới thành công ";
                     $_SESSION["successCategory"] = $errorCategory;
@@ -67,8 +64,8 @@ class CategoryController extends BaseController
     {
         $id = $_POST["submit"];
         $errorUpdate = array();
-        if ($_POST["name"] == null || $_POST["description"] == null) {
-            $errorUpdate[] = "Name, Description, Avatar không được để trống !";
+        if ($_POST["name"] == null || $_FILES["thumbnail"]['name'] == '' || $_POST["opening"] == null) {
+            $errorUpdate[] = "Name, Opening movie, Avatar không được để trống !";
             $_SESSION["errorUpdate"] = $errorUpdate;
             $this->redirect("index.php?mod=category&&act=store&id=" . $id);
         } else {
@@ -84,7 +81,7 @@ class CategoryController extends BaseController
                 $this->redirect("index.php?mod=category&&act=store&id=" . $id);
             } else {
                 $model = new Categories();
-                $update = $model->update($id, $_POST["name"], $_POST["parent_id"], $queryThumbnail, $_POST["description"]);
+                $update = $model->update($id, $_POST["name"], $_POST["opening"], $queryThumbnail,$_POST["carouse"], $_POST["description"]);
                 if ($update) {
                     $errorUpdate[] = "Cập nhật thành công ";
                     $_SESSION["successUpdate"] = $errorUpdate;

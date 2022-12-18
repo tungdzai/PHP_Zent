@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME </title>
+    <title>TH Cinemas </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.cox`m/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="./View/Home/style.css">
+    <link rel="stylesheet" href="./View/Public/style.css">
 </head>
 <body>
 <?php
@@ -37,25 +37,39 @@ require_once("./View/Layout/topbar.php")
     </div>
     <div class="row row1">
         <div class="col-lg-6 col-md-12 col-12 mx-auto px-md-0 row">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <a href="#" class="itemWrap">
-                        <img class="card-img-top" src="./Public/Storage/image/hanh_phuc_mau.jpg" alt="Card image cap">
-                    </a>
-                    <a href="#">
-                        <div class="card-block">
-                            <p>Hạnh phúc  máu</p>
-                            <hr>
-                            <span>110 phút | 25/11/2022</span>
+            <?php
+            foreach ($categories as $index => $category) {
+                if ($category["carouse"] != 1) {
+                    ?>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card">
+                            <a href="index.php?mod=Detail&&act=index&id=<?= $category["id"] ?>" class="itemWrap">
+                                <img class="card-img-top" src="../Admin/Public/Storage/<?= $category["thumbnail"] ?>"
+                                     alt="Card image cap">
+                            </a>
+                            <a href="index.php?mod=Detail&&act=index&id=<?= $category["id"] ?>">
+                                <div class="card-block">
+                                    <p><?= $category["name"] ?></p>
+                                    <hr>
+                                    <span>
+                                        <?php
+                                        $formatDate = new Format();
+                                        $date = $formatDate->formatDate($category["opening"]);
+                                        echo $date;
+                                        ?>
+                                    </span>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-            </div>
-
+                    </div>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </div>
     <div style="text-align: center">
-        <button class="xemThem col-lg-6 col-md-2 col-2 mx-auto" >Thêm</button>
+        <button class="xemThem col-lg-6 col-md-2 col-2 mx-auto">Thêm</button>
     </div>
 
 </div>
@@ -63,7 +77,8 @@ require_once("./View/Layout/topbar.php")
 <div class="bannerWrap">
     <div class=" mx-auto text-center row col-lg-7 ">
         <a href="#">
-            <img src="	https://media.lottecinemavn.com/Media/WebAdmin/4f17c2bc4f37470aa5f03e67e64b4013.jpg" alt="" width="100%">
+            <img src="	https://media.lottecinemavn.com/Media/WebAdmin/4f17c2bc4f37470aa5f03e67e64b4013.jpg" alt=""
+                 width="100%">
         </a>
     </div>
 </div>
@@ -72,23 +87,9 @@ require_once("./View/Layout/topbar.php")
     <i class="fas fa-angle-double-up"></i>
 </div>
 <!-- footer -->
-<div class="footer_slide_banner row col-lg-6 mx-auto">
-    <div class="banner_footer">
-        <ul>
-            <li><a href="#">4DX</a></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
+<div class="footer_slide_banner row col-lg-12 mx-auto">
+    <img src="https://www.cgv.vn/skin/frontend/cgv/default/images/bg-cgv/brand-type-film-footer_ver2.png" alt=""
+         width="100%">
 </div>
 <div class="row" id="row12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="80">
     <div class="col-lg-10 col-md-12 col-12 mx-auto row">
@@ -104,7 +105,7 @@ require_once("./View/Layout/topbar.php")
             <h6>Điều kiện sử dụng<span class="plus d-md-none d-lg-none"><i class="fas fa-plus"></i></span><span
                         class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
             <ul class=" d-md-block d-lg-block">
-                <li><a href="" style="color: #FFFFFF;text-decoration: none">Điều kiện chung  </a></li>
+                <li><a href="" style="color: #FFFFFF;text-decoration: none">Điều kiện chung </a></li>
                 <li><a href="" style="color: #FFFFFF;text-decoration: none">Tài khoản thanh toán </a></li>
                 <li><a href="" style="color: #FFFFFF;text-decoration: none">Kiểm tra đơn hàng </a></li>
                 <li><a href="" style="color: #FFFFFF;text-decoration: none">Câu hỏi thường gặp</a></li>
@@ -114,8 +115,10 @@ require_once("./View/Layout/topbar.php")
             <h6>Chăm sóc khách hàng <span class="plus d-md-none d-lg-none"><i class="fas fa-plus"></i></span><span
                         class="minus d-md-none d-lg-none"><i class="fas fa-minus"></i></span></h6>
             <ul class="widget-contact-info d-md-block d-lg-block">
-                <li>Phone/Fax: <a href="tel://0334463900" style="color: #FFFFFF;text-decoration: none">0334463900</a></li>
-                <li>Email: <a href="mailto://tungnguyen0603202@gmail.com" style="color: #FFFFFF;text-decoration: none">tunnguyen0603202@gmail.com</a></li>
+                <li>Phone/Fax: <a href="tel://0334463900" style="color: #FFFFFF;text-decoration: none">0334463900</a>
+                </li>
+                <li>Email: <a href="mailto://tungnguyen0603202@gmail.com" style="color: #FFFFFF;text-decoration: none">tunnguyen0603202@gmail.com</a>
+                </li>
             </ul>
 
         </div>
@@ -124,7 +127,7 @@ require_once("./View/Layout/topbar.php")
 </div>
 <div class="row" id="footer">
     <div class="col-lg-10 mx-auto text-center">
-       TH Cinema </span> Made with <i class="fa fa-heart text-danger"></i> by VIETTUNG</p>
+        TH Cinema </span> Made with <i class="fa fa-heart text-danger"></i> by VIETTUNG</p>
     </div>
 </div>
 <!-- end footer -->
@@ -140,7 +143,7 @@ require_once("./View/Layout/topbar.php")
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
         integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
         crossorigin="anonymous"></script>
-<script src="./View/Home/script.js"></script>
+<script src="./View/Public/script.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
         crossorigin="anonymous"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

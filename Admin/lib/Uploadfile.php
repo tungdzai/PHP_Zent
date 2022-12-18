@@ -1,4 +1,5 @@
 <?php
+
 class Uploadfile
 {
     public function fileUpload($inputName, $targetDir, $allowTypes, $maxSize)
@@ -37,7 +38,7 @@ class Uploadfile
         }
 
         if ($uploadStatus) {
-            if (move_uploaded_file($_FILES[$inputName]["tmp_name"],getcwd().DIRECTORY_SEPARATOR."Public/Storage/".$targetFile)) {
+            if (move_uploaded_file($_FILES[$inputName]["tmp_name"], getcwd() . DIRECTORY_SEPARATOR . "Public/Storage/" . $targetFile)) {
                 return array(true, $targetFile);
             } else {
                 $errors[] = "Có lỗi xảy ra khi upload file.Vui lòng kiểm tra lại !";
@@ -48,5 +49,6 @@ class Uploadfile
         }
 
     }
+
 
 }
